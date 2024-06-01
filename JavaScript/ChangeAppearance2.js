@@ -24,7 +24,7 @@ function colorObject() {
   this.shadow4 = "#151b21";
   this.username;
   this.glow = "#ffffff";
-  this.text = "#ffffff";
+  this.text = "#FFFFFF";
   this.outline = "#000000";
   this.hover = "#7C878F32";
   this.active = "#7C878F60";
