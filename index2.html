@@ -5,15 +5,14 @@
 <meta name="viewport" content="width=device-width">
 <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
-<meta http-equiv="X-Frame-Options" content="DENY">
-
 <meta name="referrer" content="no-referrer">
-<link rel="stylesheet" href="CSS/Stable.css">
-<link rel="stylesheet" href="CSS/Common.css">
-<link rel="stylesheet" href="CSS/Neu/Buttons.css">
-<link rel="stylesheet" href="CSS/contextMenu.css">
-<link rel="stylesheet" href="CSS/Neu/AppearOpts.css">
-<link rel="stylesheet" href="CSS/Neu/Resource.css">
+
+<link rel="stylesheet" href="CSS/Stable.css?v=VERSION">
+<link rel="stylesheet" href="CSS/Common.css?v=VERSION">
+<link rel="stylesheet" href="CSS/Neu/Buttons.css?v=VERSION">
+<link rel="stylesheet" href="CSS/contextMenu.css?v=VERSION">
+<link rel="stylesheet" href="CSS/Neu/AppearOpts.css?v=VERSION">
+<link rel="stylesheet" href="CSS/Neu/Resource.css?v=VERSION">
 
 	<title>Adjuster Console</title>
 
@@ -33,9 +32,16 @@ This code is provided under the following terms and conditions:
 
 By using this code, you agree to abide by these terms and conditions. Failure to comply with these terms may result in legal action.
 
-For inquiries regarding licensing or permission to use this code in ways not covered by this license, please contact the author at AdjusterConsole.com.  */
+For inquiries regarding licensing or permission to use this code in ways not covered by this license, please contact the author at AdjusterConsole@gmail.com.  */
 
 body {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
   font-family: Verdana, sans-serif;
   background: var(--my-background-color);
 }
@@ -72,6 +78,17 @@ body {
   top: 535px;
   left: 665px;
   z-index:-1;
+}
+
+.numbersShow {
+  top: 535px;
+  left: 665px;
+}
+
+.hide {
+  display: none;
+  background: none;
+  box-shadow: none;
 }
 
 #ITSBRITTNEY {
@@ -112,12 +129,12 @@ body {
 }
 
 :root {
-  --my-background-color: #324350;
-  --my-accent-color: #7C878F;
-  --my-shadow-color1: #506b7f;
-  --my-shadow-color2: #2d3c48;
-  --my-shadow-color3: #364856;
-  --my-shadow-color4: #151b21;
+  --my-background-color: #2d4252;
+  --my-accent-color: #7c878f;
+  --my-shadow-color1: #688da6;
+  --my-shadow-color2: #1c2a35;
+  --my-shadow-color3: #425e70;
+  --my-shadow-color4: #0e1315;
   --my-glow-color: #ffffff;
   --glow-txt-color: #FFFFFF;
   --glow-outline-color: #000000;
@@ -131,20 +148,11 @@ body {
   --div-width: 10px;
 }
 
-#snipbox2 {
-  display: inline-block;
-  position: absolute;
-  transition: .4s;
-  top: 0px;
-  left: 0px;
-}
-
 </style>
 </head>
 <body>
-
-<div id="pdiv" class="noShow"><p></div>
-<div id="swap1" class="otherone" style="vertical-align: middle;" onclick="openNav()">&#9776;</div>
+<div id="copy-notification">Copied!</div>
+<button class="swapVer" onclick="swapPage('1')">Original</button>
 
                                                 <!-- Menu -->
 
@@ -152,13 +160,9 @@ body {
   <button id="LOCK1" class="astext" onclick="MENU()">&#x2666; Settings &#x2666;</button>
   <button id="appearance" class="astext menu" onclick="personalize()">&#x2666; Appearance &#x2666;</button>
   <button id="BtnBuilder" class="astext menu" onclick="BuilderShow()">&#x2666; Toggle On/Off &#x2666;</button>
-  <button id="tutorialSel" class="astext menu" onclick="swapPage('1')" >&#x2666; Original &#x2666;</button>
 </div>
 
-
-                                                <!-- File Things -->
-
-<div id="navtag" class="nav_tag neu_style" onclick="openSOPnav();">Browse Full SOPs</div>
+                                                <!-- SOP Menu -->
 
 <div id="sopnav" class="sop_nav">
   <a href="javascript:void(0)" class="close_pdf" onclick="closePDFmenu()">&times;</a>
@@ -175,9 +179,7 @@ body {
   <button class="sop_btn neu" id="pdf0010" onclick="showSOP(this.id)">Add Or Update RF</button>
   <button class="sop_btn neu" id="pdf0011" onclick="showSOP(this.id)">Finalizing Claims</button>
   <button class="sop_btn neu navEnder" id="pdf0012" onclick="showSOP(this.id)">Claim Documentation</button>
-
 </div>
-
 <div id="sopnav2" class="sop_nav">
   <a href="javascript:void(0)" class="close_pdf" onclick="closePDFmenu()">&times;</a>
   <button class="sop_btn neu navHeader">Claim Issues</button>
@@ -198,8 +200,6 @@ body {
   <button class="sop_btn neu" id="pdf0026" onclick="showSOP(this.id)">Modifications</button>
   <button class="sop_btn neu" id="pdf0027" onclick="showSOP(this.id)">Oversized Tires</button>
   <button class="sop_btn neu navEnder" id="pdf0028" onclick="showSOP(this.id)">Suspension Modification</button>
-
-
 </div>
 <div id="sopnav3" class="sop_nav">
   <a href="javascript:void(0)" class="close_pdf" onclick="closePDFmenu()">&times;</a>
@@ -223,6 +223,7 @@ body {
   <button class="sop_btn neu" id="pdf0044" onclick="showSOP(this.id)">Text Notifications</button>
   <button class="sop_btn neu" id="pdf0045" onclick="showSOP(this.id)">PT First Contact</button>
   <button class="sop_btn neu" id="pdf0046" onclick="showSOP(this.id)">State Tax</button>
+  <button class="sop_btn neu" id="pdf0047" onclick="showSOP(this.id)">Employee Handbook</button>
 </div>
 <div id="PDFdepot" class="PDF_depot">
   <button class="close_button" onclick="closeSOP()">Close</button>
@@ -232,37 +233,37 @@ body {
 
 <div id="mySidenav" class="sidenav closed_nav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <button class="navHeader" onclick="resrcCenter('5','t')">Tools</button>
-  <button onclick="openScript()">Labor Rate Script</button>
-  <button onclick="resrcCenter('5','t');openInfo(event, 'trackerTool')">Tracker Tool</button>
-  <button onclick="resrcCenter('5','t');openInfo(event, 'PAPrice')">Pricing Guide</button>
-  <button onclick="resrcCenter('5','t');openInfo(event, 'MileDiscrep')">Mileage Issues</button>
-  <button class="navEnder" onclick="resrcCenter('5','t');openInfo(event, 'QuickAns')">Quick Answers</button>
-  <button class="navHeader" onclick="resrcCenter('4','p')">Policy</button>
-  <button onclick="resrcCenter('4','p');openInfo2(event, 'MBIClaims')">MBI</button>
-  <button onclick="resrcCenter('4','p');openInfo2(event, 'xfer2790')">2790 Xfer</button>
-  <button onclick="resrcCenter('4','p');openInfo2(event, 'Tesla')">Tesla</button>
-  <button onclick="resrcCenter('4','p');openInfo2(event, 'DoNotUse')">Do Not Use</button>
-  <button onclick="resrcCenter('4','p');openInfo2(event, 'IsItPT')">Is It PT?</button>
-  <button onclick="resrcCenter('4','p');openInfo2(event, 'partsRes')">Parts Resolution</button>
-  <button onclick="resrcCenter('4','p');openInfo2(event, 'Diagnostic')">Diagnostic Times</button>
-  <button class="navEnder" onclick="resrcCenter('4','p');openInfo2(event, 'PANoOrder')">Do Not Order</button>
-  <button class="navHeader" onclick="diagCenter()">Diagnostic Assistance</button>
-  <button onclick="diagCenter();openInfo2(event, 'Cooling')">Cooling</button>
-  <button onclick="diagCenter();openInfo2(event, 'Turbo')">Turbo</button>
-  <button onclick="diagCenter();openInfo2(event, 'Timing')">Timing</button>
-  <button onclick="diagCenter();openInfo2(event, 'Steering')">Steering</button>
-  <button onclick="diagCenter();openInfo2(event, 'Suspension')">Suspension</button>
-  <button onclick="diagCenter();openInfo2(event, 'AC')">AC</button>
-  <button onclick="diagCenter();openInfo2(event, 'Electrical')">Electrical</button>
-  <button class="navEnder" onclick="diagCenter();openInfo2(event, 'Fuel')">Fuel</button>
-  <button class="navHeader" onclick="ShowTemps()">Templates</button>
-  <button onclick="PTXFER()">PT Transfer</button>
-  <button onclick="STMTTEMP('T2')>CH Statement</button>
-  <button onclick="REVIEW('T3')">Insp/Pic Review</button>
-  <button onclick="INSPTEMP('T4')">Inspection Template</button>
-  <button onclick="showAuth()">Authorization</button>
-  <button onclick="statNOTE()">Status</button>
+  <button class="navHeader" onclick="resrcCenter('5','t');closeNav()">Tools</button>
+  <button onclick="openScript();closeNav()">Labor Rate Script</button>
+  <button onclick="resrcCenter('5','t');openInfo(event, 'trackerTool');closeNav()">Tracker Tool</button>
+  <button onclick="resrcCenter('5','t');openInfo(event, 'PAPrice');closeNav()">Pricing Guide</button>
+  <button onclick="resrcCenter('5','t');openInfo(event, 'MileDiscrep');closeNav()">Mileage Issues</button>
+  <button class="navEnder" onclick="resrcCenter('5','t');openInfo(event, 'QuickAns');closeNav()">Quick Answers</button>
+  <button class="navHeader" onclick="resrcCenter('4','p');closeNav()">Policy</button>
+  <button onclick="resrcCenter('4','p');openInfo2(event, 'MBIClaims');closeNav()">MBI</button>
+  <button onclick="resrcCenter('4','p');openInfo2(event, 'xfer2790');closeNav()">2790 Xfer</button>
+  <button onclick="resrcCenter('4','p');openInfo2(event, 'Tesla');closeNav()">Tesla</button>
+  <button onclick="resrcCenter('4','p');openInfo2(event, 'DoNotUse');closeNav()">Do Not Use</button>
+  <button onclick="resrcCenter('4','p');openInfo2(event, 'IsItPT');closeNav()">Is It PT?</button>
+  <button onclick="resrcCenter('4','p');openInfo2(event, 'partsRes');closeNav()">Parts Resolution</button>
+  <button onclick="resrcCenter('4','p');openInfo2(event, 'Diagnostic');closeNav()">Diagnostic Times</button>
+  <button class="navEnder" onclick="resrcCenter('4','p');openInfo2(event, 'PANoOrder');closeNav()">Do Not Order</button>
+  <button class="navHeader" onclick="diagCenter();closeNav()">Diagnostic Assistance</button>
+  <button onclick="diagCenter();openInfo2(event, 'Cooling');closeNav()">Cooling</button>
+  <button onclick="diagCenter();openInfo2(event, 'Turbo');closeNav()">Turbo</button>
+  <button onclick="diagCenter();openInfo2(event, 'Timing');closeNav()">Timing</button>
+  <button onclick="diagCenter();openInfo2(event, 'Steering');closeNav()">Steering</button>
+  <button onclick="diagCenter();openInfo2(event, 'Suspension');closeNav()">Suspension</button>
+  <button onclick="diagCenter();openInfo2(event, 'AC');closeNav()">AC</button>
+  <button onclick="diagCenter();openInfo2(event, 'Electrical');closeNav()">Electrical</button>
+  <button class="navEnder" onclick="diagCenter();openInfo2(event, 'Fuel');closeNav()">Fuel</button>
+  <button class="navHeader" onclick="ShowTemps();closeNav()">Templates</button>
+  <button onclick="PTXFER();ShowTemps();closeNav()">PT Transfer</button>
+  <button onclick="STMTTEMP('T2');ShowTemps();closeNav()">CH Statement</button>
+  <button onclick="REVIEW('T3');ShowTemps();closeNav()">Insp/Pic Review</button>
+  <button onclick="INSPTEMP('T4');ShowTemps();closeNav()">Inspection Template</button>
+  <button onclick="showAuth();closeNav()">Authorization</button>
+  <button onclick="statNOTE();closeNav()">Status</button>
 </div>
 
                                                 <!-- Appearance Settings -->
@@ -273,7 +274,7 @@ body {
     <input id="background-picker" type="color">
   </div>
   <div id="ACpick" class="noShow">
-   <label for="accent-picker">Page Accent Color:</label><br>
+    <label for="accent-picker">Page Accent Color:</label><br>
     <input id="accent-picker" type="color">
   </div>
   <div id="shad2Pick" class="noShow">
@@ -281,7 +282,7 @@ body {
     <input id="shad2-picker" type="color">
   </div>
   <div id="shad3Pick" class="noShow">
-   <label for="shad3-picker">Gradient End:</label><br>
+    <label for="shad3-picker">Gradient End:</label><br>
     <input id="shad3-picker" type="color">
   </div>
   <div id="shad1Pick" class="noShow">
@@ -289,28 +290,28 @@ body {
     <input id="shad1-picker" type="color">
   </div>
   <div id="shad4Pick" class="noShow">
-   <label for="shad4-picker">Shadow: </label><br>
+    <label for="shad4-picker">Shadow: </label><br>
     <input id="shad4-picker" type="color">
   </div>
   <div id="secondaries" class="noShow">
   <div id="bg2Pick" class="noShow">
-   <label for="bg2-picker">Secondary Background Color:</label><br>
+    <label for="bg2-picker">Secondary Background Color:</label><br>
     <input id="bg2-picker" type="color">
   </div>
   <div id="flPick" class="noShow">
-   <label for="fl-picker">Secondary Highlight:</label><br>
+    <label for="fl-picker">Secondary Highlight:</label><br>
     <input id="fl-picker" type="color">
   </div>
   <div id="fdPick" class="noShow">
-   <label for="fd-picker">Secondary Shadow:</label><br>
+    <label for="fd-picker">Secondary Shadow:</label><br>
     <input id="fd-picker" type="color">
   </div>
   <div id="mlPick" class="noShow">
-   <label for="ml-picker">Seccondary Gradient Start:</label><br>
+    <label for="ml-picker">Seccondary Gradient Start:</label><br>
     <input id="ml-picker" type="color">
   </div>
   <div id="mdPick" class="noShow">
-   <label for="md-picker">Seccondary Gradient End:</label><br>
+    <label for="md-picker">Seccondary Gradient End:</label><br>
     <input id="md-picker" type="color" value="#a4aaae">
   </div>
   </div>
@@ -336,36 +337,50 @@ body {
   <button id="presetGrey" class="picker" onclick="setColor('grey')">Grey Preset</button>
   <button id="presetRed" class="picker" onclick="setColor('red')">Red Preset</button>
   <button id="presetGreen" class="picker" onclick="setColor('green')">Green Preset</button>
+  <button id="presetPink" class="picker" onclick="setColor('pink')">Pink Preset</button>
+  <button id="shadMaker" class="picker" onclick="shadMaker()">Shadow Maker</button>
 </div>
 
                                               <!-- Main Buttons -->
 
-<button id="newAuthstarter" class="D R P s7dispStat" onclick="showAuth()"><b><f>Authorize</f></b> Claim</button>
-
-<button id="statusNote" class="D R P s8dispStat" onclick="statNOTE()"><b>Status</b> Note</button>
-
-<button id="openScript2" class="D R P s4dispStat" onclick="openScript()">Labor Rate<br>Script</button>
+<div id="swap1" class="otherone" onclick="openNav()">&#9776;</div>
+<div id="navtag" class="nav_tag neu_style" onclick="openSOPnav();">Browse Full SOPs</div>
+<button id="newAuthstarter" class="D R P s7dispStat" oncontextmenu="customMenu(this.id, event)" onclick="showAuth()"><b><f>Authorize</f></b> Claim</button>
+<button id="statusNote" class="D R P s8dispStat" oncontextmenu="customMenu(this.id, event)" onclick="statNOTE()"><b>Status</b> Note</button>
+<button id="openScript" class="D R P s4dispStat" oncontextmenu="customMenu(this.id, event)" onclick="openScript()">Labor Rate<br>Script</button>
 
 <div id="Request" class="REQUESTDIV noShow">
-  <button id="picR" class="D R P C s1dispStat" onclick="PICREQ(this.id)"><b>PICTURE</b> REQUEST</button>
-  <button id="recR" class="D R P C s2dispStat" onclick="RECREQ(this.id)"><b>RECORDS</b> REQUEST</button>
-  <button id="noansR" class="D R P C s3dispStat" onclick="NOANSREC(this.id)">RECDS REQST <b>NO ANSWER</b></button>
-  <button id="T0" class="D R P s6dispStat" onclick="ShowTemps()"><b>TEMPLATES</b></button>
+  <button id="picR" class="D R P C s1dispStat" oncontextmenu="customMenu(this.id, event)" onclick="PICREQ(this.id)"><b>PICTURE</b> REQUEST</button>
+  <button id="recR" class="D R P C s2dispStat" oncontextmenu="customMenu(this.id, event)" onclick="RECREQ(this.id)"><b>RECORDS</b> REQUEST</button>
+  <button id="noansR" class="D R P C s3dispStat" oncontextmenu="customMenu(this.id, event)" onclick="NOANSREC(this.id)">RECDS REQST <b>NO ANSWER</b></button>
+  <button id="T0" class="D R P s6dispStat" oncontextmenu="customMenu(this.id, event)" onclick="ShowTemps()"><b>TEMPLATES</b></button>
 </div>
 
-<button id="SOPs" class="R P D g0dispStat" onclick="resrcCenter('4','p')"><f>Policy</f></button>
-<button id="tools" class="R P D g1dispStat" onclick="resrcCenter('5','t')"><f>Tools</f></button>
+<button id="SOPs" class="R P D g0dispStat" oncontextmenu="customMenu(this.id, event)" onclick="resrcCenter('4','p')"><f>Policy</f></button>
+<button id="tools" class="R P D g1dispStat" oncontextmenu="customMenu(this.id, event)" onclick="resrcCenter('5','t')"><f>Tools</f></button>
 
 <div id="TPDiv" class="noShow" style="display: none">
-  <button id="T1" class="D R P" name="name" onclick="PTXFER()"><b>PT TRANSFER</b> TEMPLATE</button>
-  <button id="T2" class="D R P C" onclick="STMTTEMP(this.id)">CH <b>STATEMENT</b> QUESTIONS</button>
-  <button id="T3" class="D R P C" onclick="REVIEW(this.id)">INPS/PIC <b>REVIEW</b> NOTE</button>
-  <button id="T4" class="D R P C" onclick="INSPTEMP(this.id)"><b>INSPECTION</b> TEMPLATE</button>
+  <button id="T1" class="D R P" oncontextmenu="customMenu(this.id, event)" name="name" onclick="PTXFER()"><b>PT TRANSFER</b> TEMPLATE</button>
+  <button id="T2" class="D R P C" oncontextmenu="customMenu(this.id, event)" onclick="STMTTEMP(this.id)">CH <b>STATEMENT</b> QUESTIONS</button>
+  <button id="T3" class="D R P C" oncontextmenu="customMenu(this.id, event)" onclick="REVIEW(this.id)">INPS/PIC <b>REVIEW</b> NOTE</button>
+  <button id="T4" class="D R P C" oncontextmenu="customMenu(this.id, event)" onclick="INSPTEMP(this.id)"><b>INSPECTION</b> TEMPLATE</button>
+</div>
+
+                                                <!-- PT Mode -->
+
+<div id="PTModeDiv" class="noShow" style="display: none">
+  <button id="transAuthBtn" onclick="transAuth()">Trans Auth</button>
+  <button id="ringfailDeny" onclick="ringDeny()">Denial-Carbon<br>Piston Rings</button>
+  <button id="T21" onclick="STMTTEMP(this.id)"><b>STATEMENT</b> QUESTIONS</button>
+  <button id="T31" onclick="INSPTEMP(this.id)"><b>INSPECTION</b> TEMPLATE</button>
+  <button id="T41" onclick="inspREVIEW(this.id)">INPSECT <b>REVIEW</b></button>
+  <button id="T51" onclick="REVIEW(this.id)">PICTURE <b>REVIEW</b></button>
+  <button id="T61" onclick="carfaxREVIEW(this.id)">CARFAX <b>REVIEW</b></button>
 </div>
 
                                                 <!-- Parts Intake -->
 
-<div id="ITSBRITTNEY" class="ONEMORETIME noShow a0dispStat" style="display: inline-block">
+<div id="ITSBRITTNEY" class="ONEMORETIME noShow a0dispStat">
   <textarea autocomplete="off" title="Part Name" id="partname7" class="intakeboxes" name="name" placeholder="Part Name" wrap="off"></textarea>
   <textarea autocomplete="off" title="Part Name" id="partname6" class="intakeboxes" name="name" placeholder="Part Name" wrap="off"></textarea>
   <textarea autocomplete="off" title="Part Name" id="partname5" class="intakeboxes" name="name" placeholder="Part Name" wrap="off"></textarea>
@@ -376,31 +391,31 @@ body {
   <textarea autocomplete="off" title="Part Number" id="partnum" class="intakeboxes" name="name" placeholder="Part Number" wrap="off"></textarea>
   <textarea autocomplete="off" title="RF Price" id="rfprice" class="intakeboxes" name="name" placeholder="RF Price" wrap="off"></textarea>
   <textarea autocomplete="off" title="MSRP" id="msrp" class="intakeboxes" name="name" placeholder="OEM MSRP" wrap="off"></textarea>
-  <button id="SENDPART" class="senditnow D R P" onclick="FormToTA();">Part</button>
-  <button id="SENDLABOR" class="senditnow D R P" onclick="SENDLABOR1()">Labor</button>
-  <button id="SENDDIAG" class="senditnow D R P" onclick="SENDDIAG1()">Diag</button>
-  <button id="clearIntake" class="senditnow D R P" onclick="ClearIntake();">Clear</button>
-  <button id="DJKahlid" class="senditnow D R P" onclick="AnotherOne()">Add Box</button>
-  <button id="MTVsNEXT" class="senditnow D R P" onclick="NextPart()">Next</button>
+  <button id="SENDPART" class="senditnow D R P" oncontextmenu="customMenu(this.id, event)" onclick="FormToTA();">Part</button>
+  <button id="SENDLABOR" class="senditnow D R P" oncontextmenu="customMenu(this.id, event)" onclick="SENDLABOR1()">Labor</button>
+  <button id="SENDDIAG" class="senditnow D R P" oncontextmenu="customMenu(this.id, event)" onclick="SENDDIAG1()">Diag</button>
+  <button id="clearIntake" class="senditnow D R P" oncontextmenu="customMenu(this.id, event)" onclick="ClearIntake();">Clear</button>
+  <button id="DJKahlid" class="senditnow D R P" oncontextmenu="customMenu(this.id, event)" onclick="AnotherOne()">Add Box</button>
+  <button id="MTVsNEXT" class="senditnow D R P" oncontextmenu="customMenu(this.id, event)" onclick="NextPart()">Next</button>
 </div>
 
                                             <!-- Other Parts and Labor -->
 
 <div id="hlc" class="HardLaborCamp noShow">
-  <button id="R2" class="PartsAndLabor D R P a1dispStat" onclick="COPYNOTE()">Copy P&L</button>
-  <button id="R15" class="Reset D R P a4dispStat" style="display: inline-block" onclick="RESET()"><f>RESET</f></button>
+  <button id="R2" class="PartsAndLabor D R P a1dispStat" oncontextmenu="customMenu(this.id, event)" onclick="COPYNOTE()">Copy P&L</button>
+  <button id="R15" class="Reset D R P a4dispStat" oncontextmenu="customMenu(this.id, event)" style="display: inline-block" onclick="RESET()"><f>RESET</f></button>
   <div id="subPL2" class="noShow a2dispStat">
-    <button id="R8" class="D R P" style="display: inline-block" onclick="NEWOEM()"><f>OEM</f></button>
-    <button id="R9" class="D R P" style="display: inline-block" onclick="NEWAM()"><f>AM</f></button>
-    <button id="R10" class="D R P" style="display: inline-block" onclick="OEMOVER()">Over 250</button>
-    <button id="R11" class="D R P" style="display: inline-block" name="edit" onclick="BULK(this.id)">BULK</button>
-    <button id="fluid" class="P astext" style="display: inline-block" onclick="FLUIDLEAK()">$</button>
+    <button id="R8" class="D R P" oncontextmenu="customMenu(this.id, event)" style="display: inline-block" onclick="NEWOEM()"><f>OEM</f></button>
+    <button id="R9" class="D R P" oncontextmenu="customMenu(this.id, event)" style="display: inline-block" onclick="NEWAM()"><f>AM</f></button>
+    <button id="R10" class="D R P" oncontextmenu="customMenu(this.id, event)" style="display: inline-block" onclick="OEMOVER()">Over 250</button>
+    <button id="R11" class="D R P" oncontextmenu="customMenu(this.id, event)" style="display: inline-block" name="edit" onclick="BULK(this.id)">BULK</button>
+    <button id="fluid" class="P astext" oncontextmenu="customMenu(this.id, event)" style="display: inline-block" onclick="FLUIDLEAK()">$</button>
   </div>
   <div id="subPL1" class="noShow a3dispStat">
-    <button id="R12" class="D R P C" style="display: inline-block" name="edit" onclick="EVACRECH(this.id)">EVAC</button>
-    <button id="R13" class="D R P C" style="display: inline-block" name="edit" onclick="ALIGNMENT(this.id)">ALIGN</button>
-    <button id="R16" class="D R P" style="display: inline-block" onclick="LABOR()">LABOR</button>
-    <button id="R17" class="D R P" style="display: inline-block" onclick="DIAG()">DIAG</button>
+    <button id="R12" class="D R P C" oncontextmenu="customMenu(this.id, event)" style="display: inline-block" name="edit" onclick="EVACRECH(this.id)">EVAC</button>
+    <button id="R13" class="D R P C" oncontextmenu="customMenu(this.id, event)" style="display: inline-block" name="edit" onclick="ALIGNMENT(this.id)">ALIGN</button>
+    <button id="R16" class="D R P" oncontextmenu="customMenu(this.id, event)" style="display: inline-block" onclick="LABOR()">LABOR</button>
+    <button id="R17" class="D R P" oncontextmenu="customMenu(this.id, event)" style="display: inline-block" onclick="DIAG()">DIAG</button>
   </div>
 </div>
 
@@ -502,60 +517,38 @@ body {
 
   <div id="statNote" class="backing">
     <div id="statNoteinner" class="newStyle">
-    <p style="text-align:center;margin-top:10px;"><b>Status Note</b></p>
-    <p>What are we waiting on?</p>
-    <p class="bodyTab">
-      <input type="radio" value="inspection" class="newStatus Mradio" name="waitfor" id="stat1"><label for="stat1">Inspection</label><br>
-      <input type="radio" value="photos" class="newStatus Mradio" name="waitfor" id="stat2"><label for="stat2">Photos</label><br>
-      <input type="radio" value="records" class="newStatus Mradio" name="waitfor" id="stat3"><label for="stat3">Records</label><br>
-      <input type="radio" value="CH statement" class="newStatus Mradio" name="waitfor" id="stat4"><label for="stat4">CH statement</label><br>
-      <input type="radio" value="review" class="newStatus Mradio" name="waitfor" id="stat5"><label for="stat5">Review</label><br>
-      <input type="radio" class="newStatus Mradio" name="waitfor" id="stat6"><label for="stat6">Other</label><input type="text" class="newStatus" id="stat6text" style="margin-left:15px;">
-    </p>
-    <p>From whom?</p>
-    <p class="bodyTab">
-      <input type="radio" value="Contract Holder" class="newStatus Mradio" name="onwho" id="stat7" required><label for="stat7">Contract Holder</label><br>
-      <input type="radio" value="Repair Facility" class="newStatus Mradio" name="onwho" id="stat8"><label for="stat8">Repair Facility</label><br>
-      <input type="radio" value="AAS" class="newStatus Mradio" name="onwho" id="stat9"><label for="stat9">AAS</label><br>
-      <input type="radio" class="newStatus Mradio" name="onwho" id="stat10"><label for="stat10">Other</label><input type="text" class="newStatus" id="stat10text" style="margin-left:15px;">
-    </p>
-    <p>Why?</p>
-    <p class="bodyTab">
-      <input type="checkbox" value="rule out pre-x" class="newStatus largerCheckbox" name="butYtho" id="stat11"><label for="stat11">To rule out pre-x</label><br>
-      <input type="checkbox" value="verify failure" class="newStatus largerCheckbox" name="butYtho" id="stat12"><label for="stat12">To verify failure</label><br>
-      <input type="checkbox" value="correct VIN or mileage issue" class="newStatus largerCheckbox" name="butYtho" id="stat13"><label for="stat13">To correct VIN or mileage issue</label><br>
-      <input type="checkbox" class="newStatus largerCheckbox" name="butYtho" id="stat14"><label for="stat14">Other</label><input type="text" class="newStatus" id="stat14text" style="margin-left:15px;">
-    </p>
-    <p>Do they know what we're looking for<br>and how to get it to us?</p>
-    <p class="bodyTab">
-      <input type="radio" value="yes" class="newStatus Mradio" name="aware" id="stat15" required><label for="stat15">Yes</label><br>
-      <input type="radio" value="no" class="newStatus Mradio" name="aware" id="stat16"><label for="stat16">No</label><br>
-    </p>
-    <button id="theHoldup" class="wefwefwef" onclick="submitStat('1')">Another One?</button>
-  </div>
-  <div id="optional" class="newStyle rgtupr">
-    <p class="bodyTab" style="font-size:16px;">
-      Any relevant info?<br>
-      What are the next steps?<br>
-      Anything to look out for?<br>
-      Any notes, in general?<br>
-      <textarea id="optionalNote" class="statText" style="box-shadow:none;"></textarea>
-    </p>
-  </div>
-  <div id="optional2" class="newStyle lftmid" style="font-size:16px;">
-    <p>
-      <input type="checkbox" id="informed" class="newStatus largerCheckbox">
-      The CH and RF should be informed<br>of requests and claim status.<br><br>
-      <input type="checkbox" id="pandlin" class="newStatus largerCheckbox">
-      Parts and labor should be verified<br>and entered into claim. <br><br>
-      <input type="checkbox" id="taskset" class="newStatus largerCheckbox">
-      A task should be set for follow up.
-    </p>
-  </div>
-  <div id="littleHelp" class="noShow">In the Status Note section, select the options relevant to your claim. If you are waiting on additional items, click 'Another One?' and repeat.<br>Add anything you like in the text area at the top right of the screen.<br>In the section under that, click the boxes next to the procedures you have completed.<br>When finished click 'Submit' to generate your note.</div>
+      <p style="text-align:center;margin-top:10px;"><b>Status Note</b></p>
+      <p>What are we waiting on?</p>
+      <p class="bodyTab">
+        <input type="checkbox" class="newStatus largerCheckbox" name="statNotebox" id="stat1"><label for="stat1">Inspection to Verify Failure.</label><br>
+        <input type="checkbox" class="newStatus largerCheckbox" name="statNotebox" id="stat2"><label for="stat2">Records from the CH.</label><br>
+        <input type="checkbox" class="newStatus largerCheckbox" name="statNotebox" id="stat3"><label for="stat3">Statement from CH.</label><br>
+        Photos from the RF to<br>
+        <input type="checkbox" class="newStatus largerCheckbox" name="statNotebox" id="stat4"><label for="stat4">Verify Failure</label><br>    
+        <input type="checkbox" class="newStatus largerCheckbox" name="statNotebox" id="stat5"><label for="stat5">Correct VIN or Mileage Issue</label><br> 
+      </p>
+      <p>Do they know what we're looking for<br>and how to get it to us?</p>
+      <p class="bodyTab">
+        <input type="checkbox" class="newStatus largerCheckbox" name="statNotebox" id="stat6"><label for="stat6">RF knows</label><br>
+        <input type="checkbox" class="newStatus largerCheckbox" name="statNotebox" id="stat7" onclick="highlander('stat8')"><label for="stat7">CH knows</label><br>
+        <input type="checkbox" class="newStatus largerCheckbox" name="statNotebox" id="stat8" onclick="highlander('stat7')"><label for="stat8">Left VM for CH. Tasked CS.</label><br>
+      </p>
+      <p>Have parts and labor been verified<br>and entered into the claim? </p>
+      <p class="bodyTab"><input type="checkbox" id="stat9" class="newStatus largerCheckbox" name="statNotebox">Yes</p>
+    </div>
+    <div id="optional" class="newStyle rgtupr">
+      <p class="bodyTab" style="font-size:16px;">
+        Any relevant info?<br>
+        What are the next steps?<br>
+        Anything to look out for?<br>
+        Any notes, in general?<br>
+        <textarea id="optionalNote" class="statText" style="box-shadow:none;"></textarea>
+      </p>
+    </div>
     <button id="submitStat" class="wefwefwef" onclick="submitStat('0')">Submit</button>
     <button id="cancelStat" class="wefwefwef" onclick="cancelStat()">Cancel</button>
   </div>
+
 
                                                 <!-- Auth Note -->
 
@@ -571,7 +564,7 @@ body {
       <button id="cancelNewauth" class="wefwefwef" onclick="cancelNewauth()">Cancel</button>
       <button id="authMove" class="wefwefwef" onclick="moveAuth()">Continue</button>
     </div>
-    <div id="authRequests" class="newStyle authStyle" style="display:none;>
+    <div id="authRequests" class="newStyle authStyle" style="display:none;">
       <p style="text-align:center;"><b>Did you request anything?</b><br>
       Select all that apply...</p>
       <p class="bodyTab"><input type="checkbox" id="auth6" name="authreqs" class="FNA largerCheckbox"><label for="auth6"><b>Inspection</b></label><br>
@@ -613,62 +606,119 @@ body {
 
                                                 <!-- Note Builder -->
 
-<div id="snipbox2" class="noShow">
+
 <div id="snipbox" class="SnipDiv noShow s0dispStat">
   <div id="rfibcall" class="RFinboundDIV  noShow">
     <div id="textpreview" class="noShow">
        <textarea autocomplete="off" id="Snippings" class="SnipArea" name="name" style="display: none" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
     </div>
     <div id="RFone noShow">
-      <button id="RFIBBTN" class="IBOBC R D P" onclick="RFIB()"><f>RF</f><br><b>INBOUND</b></button>
-      <button id="TGAFBTN" class="IBOBC R D P" onclick="TGAF()"><f>CALLED CH</f> <b>TO GET AUTH FOR</b></button>
-      <button id="RESET" class="IBOBC R D P" onclick="RESETNOTE()">RESET</button>
-      <button id="COPY" class="IBOBC R D P" onclick="COPYIt()">COPY</button>
+      <button id="RFIBBTN" class="IBOBC2 R D P" oncontextmenu="customMenu(this.id, event)" onclick="RFIB()"><f>RF</f><br><b>INBOUND</b></button>
+      <button id="TGAFBTN" class="IBOBC2 R D P" oncontextmenu="customMenu(this.id, event)" onclick="TGAF()"><f>CALLED CH</f> <b>TO GET AUTH FOR</b></button>
+      <button id="RESET" class="IBOBC2 R D P" oncontextmenu="customMenu(this.id, event)" onclick="RESETNOTE()">RESET</button>
+      <button id="COPY" class="IBOBC2 R D P" oncontextmenu="customMenu(this.id, event)" onclick="COPYIt()">COPY</button>
     </div>
   </div>
   <div id="chobcall" class="CHoutboundDIV noShow">
     <div id="RFtwo" class="noShow">
-     <button id="RFIBDH" class="IBOBC D R P" onclick="RFIBDH()" style="display: none;">DIDN'T HAVE</button>
-     <button id="PNLCBTN" class="IBOBC D R P C" onclick="PNLC(this.id)" style="display: none">CHECK COVERAGE <br>ADV PNLC</button>
-     <button id="TOTALBTN" class="IBOBC D R P C" onclick="TOTAL(this.id)" style="display: none">TO GET <br>TOTALS</button>
-     <button id="RFAUTHBTN" class="IBOBC D R P C" onclick="GAR(this.id)" style="display: none">TO GET <br>AUTH</button>
+     <button id="RFIBDH" class="IBOBC2 D R P" oncontextmenu="customMenu(this.id, event)" onclick="RFIBDH()" style="display: none;">DIDN'T HAVE</button>
+     <button id="PNLCBTN" class="IBOBC2 D R P C" oncontextmenu="customMenu(this.id, event)" onclick="PNLC(this.id)" style="display: none">CHECK COVERAGE <br>ADV PNLC</button>
+     <button id="TOTALBTN" class="IBOBC2 D R P C" oncontextmenu="customMenu(this.id, event)" onclick="TOTAL(this.id)" style="display: none">TO GET <br>TOTALS</button>
+     <button id="RFAUTHBTN" class="IBOBC2 D R P C" oncontextmenu="customMenu(this.id, event)" onclick="GAR(this.id)" style="display: none">TO GET <br>AUTH</button>
     </div>
     <div id="RFthree" class="noShow">
-      <button id="RFIBND" class="IBOBC D R P C" onclick="RFIBND(this.id)" style="display: none">DIAGNOSTIC</button>
-      <button id="RFIBNE" class="IBOBC D R P C" onclick="RFIBNE(this.id)" style="display: none">ESTIMATE</button>
-      <button id="RFIBNF" class="IBOBC D R P C" onclick="RFIBNF(this.id)" style="display: none">FAILURE</button>
-      <button id="RFIBNV" class="IBOBC D R P C" onclick="RFIBNV(this.id)" style="display: none">THE VEHICLE</button>
+      <button id="RFIBND" class="IBOBC2 D R P C" oncontextmenu="customMenu(this.id, event)" onclick="RFIBND(this.id)" style="display: none">DIAGNOSTIC</button>
+      <button id="RFIBNE" class="IBOBC2 D R P C" oncontextmenu="customMenu(this.id, event)" onclick="RFIBNE(this.id)" style="display: none">ESTIMATE</button>
+      <button id="RFIBNF" class="IBOBC2 D R P C" oncontextmenu="customMenu(this.id, event)" onclick="RFIBNF(this.id)" style="display: none">FAILURE</button>
+      <button id="RFIBNV" class="IBOBC2 D R P C" oncontextmenu="customMenu(this.id, event)" onclick="RFIBNV(this.id)" style="display: none">THE VEHICLE</button>
     </div>
     <div id="CHtwo" class="noShow">
-      <button id="TGAFOBTN" class="IBOBC D R P" onclick="TGAFO(this.id)" style="display: none">OOPC</button>
-      <button id="TGAFSBTN" class="IBOBC D R P" onclick="TGAFS(this.id)" style="display: none">SHIPPING</button>
-      <button id="TGAFBBTN" class="IBOBC D R P" onclick="TGAFB(this.id)" style="display: none">BOTH</button>
+      <button id="TGAFOBTN" class="IBOBC2 D R P" oncontextmenu="customMenu(this.id, event)" none" onclick="TGAFO(this.id)" style="display: none">OOPC</button>
+      <button id="TGAFSBTN" class="IBOBC2 D R P" oncontextmenu="customMenu(this.id, event)" none" onclick="TGAFS(this.id)" style="display: none">SHIPPING</button>
+      <button id="TGAFBBTN" class="IBOBC2 D R P" oncontextmenu="customMenu(this.id, event)" none" onclick="TGAFB(this.id)" style="display: none">BOTH</button>
     </div>
     <div id="CHthree" class="noShow">
-      <button id="TGAFOABTN" class="IBOBC D R P C" onclick="TGAFOA(this.id)" style="display: none">AUTHED</button>
-      <button id="TGAFODBTN" class="IBOBC D R P C" onclick="TGAFOD(this.id)" style="display: none">DECLINED</button>
-      <button id="TGAFOCBTN" class="IBOBC D R P C" onclick="TGAFOC(this.id)" style="display: none">CH WILL CALL BACK</button>
+      <button id="TGAFOABTN" class="IBOBC2 D R P C" oncontextmenu="customMenu(this.id, event)" none" onclick="TGAFOA(this.id)" style="display: none">AUTHED</button>
+      <button id="TGAFODBTN" class="IBOBC2 D R P C" oncontextmenu="customMenu(this.id, event)" onclick="TGAFOD(this.id)" style="display: none">DECLINED</button>
+      <button id="TGAFOCBTN" class="IBOBC2 D R P C" oncontextmenu="customMenu(this.id, event)" onclick="TGAFOC(this.id)" style="display: none">CH WILL CALL BACK</button>
     </div>
     <div id="CHfour" class="noShow">
-      <button id="TGAFSABTN" class="IBOBC D R P C" onclick="TGAFSA(this.id)" style="display: none">AUTHED</button>
-      <button id="TGAFSDBTN" class="IBOBC D R P C" onclick="TGAFSD(this.id)" style="display: none">DECLINED</button>
-      <button id="TGAFSCBTN" class="IBOBC D R P C" onclick="TGAFSC(this.id)" style="display: none">CH WILL CALL BACK</button>
+      <button id="TGAFSABTN" class="IBOBC2 D R P C" oncontextmenu="customMenu(this.id, event)" onclick="TGAFSA(this.id)" style="display: none">AUTHED</button>
+      <button id="TGAFSDBTN" class="IBOBC2 D R P C" oncontextmenu="customMenu(this.id, event)" onclick="TGAFSD(this.id)" style="display: none">DECLINED</button>
+      <button id="TGAFSCBTN" class="IBOBC2 D R P C" oncontextmenu="customMenu(this.id, event)" onclick="TGAFSC(this.id)" style="display: none">CH WILL CALL BACK</button>
     </div>
     <div id="CHfive" class="noShow">
-      <button id="TGAFOSABTN" class="IBOBC D R P C" onclick="TGAFOSA(this.id)" style="display: none">AUTHED BOTH</button>
-      <button id="TGAFOSDSBTN" class="IBOBC D R P C" onclick="TGAFOSDS(this.id)" style="display: none">DECLINED SHIPPING <br>APPROVED OOP</button>
-      <button id="TGAFOSDBBTN" class="IBOBC D R P C" onclick="TGAFOSDB(this.id)" style="display: none">DECLINED REPAIRS</button>
-      <button id="TGAFOSCBTN" class="IBOBC D R P C" onclick="TGAFOSC(this.id)" style="display: none">CH WILL CALL BACK</button>
+      <button id="TGAFOSABTN" class="IBOBC2 D R P C" oncontextmenu="customMenu(this.id, event)" onclick="TGAFOSA(this.id)" style="display: none">AUTHED BOTH</button>
+      <button id="TGAFOSDSBTN" class="IBOBC2 D R P C" oncontextmenu="customMenu(this.id, event)" onclick="TGAFOSDS(this.id)" style="display: none">DECLINED SHIPPING <br>APPROVED OOP</button>
+      <button id="TGAFOSDBBTN" class="IBOBC2 D R P C" oncontextmenu="customMenu(this.id, event)" onclick="TGAFOSDB(this.id)" style="display: none">DECLINED REPAIRS</button>
+      <button id="TGAFOSCBTN" class="IBOBC2 D R P C" oncontextmenu="customMenu(this.id, event)" onclick="TGAFOSC(this.id)" style="display: none">CH WILL CALL BACK</button>
     </div>
     <div id="NoAnsDiv" class="noShow">
-      <button id="NALVM" class="IBOBC D R P" onclick="NAV()" style="display: none">NO ANS<br>LEFT VM</button>
-      <button id="NANVM" class="IBOBC D R P" onclick="NAN()" style="display: none">NO ANS<br>NO VM</button>
+      <button id="NALVM" class="IBOBC2 D R P" oncontextmenu="customMenu(this.id, event)" onclick="NAV()" style="display: none">NO ANS<br>LEFT VM</button>
+      <button id="NANVM" class="IBOBC2 D R P" oncontextmenu="customMenu(this.id, event)" onclick="NAN()" style="display: none">NO ANS<br>NO VM</button>
     </div>
   </div>
 </div>
+
+
+                                                <!-- Context Menu -->
+
+  <div id="context-menu">
+    <div class="item" onclick="editDisplay()">Display</div>
+    <div class="item" onclick="editContent()">Content</div>
+    <div class="item" onclick="editSize()">Size</div>
+    <div class="item" onclick="editPos()">Position</div>
+    <div class="item" onclick="showCustom()">New Button</div>
+    <div class="item" onclick="BuilderShow('o')">Toggle List</div>
+  </div>
+
+<div class="CMeditDIV backing" id="disEdit" style="display:none; text-align: center;">
+  <div id="TitleDisplay" class="noShow"><b>Edit Display</b>
+  </div>
+  <div id="Instruction" class="noShow"> Highlight the text you would like to modify.<br>
+    Press the button to apply the effect<br>
+    Change the font size using the + and - buttons<br><br>
+  </div>
+  <button id="color" class="bones" onclick="submitDisp('c')">Color Change</button>
+  <button id="bold" class="bones" onclick="submitDisp('b')">Toggle Bold</button>
+  <button id="mimic" class="bones" contenteditable></button>
+  <div id="fontSizer" class="noShow"></div>
+  <button id="plus" class="bones" onclick="fontChange('1')"> <b>+</b> </button>
+  <button id="minus" class="bones" onclick="fontChange('-1')"> <b>-</b> </button>
+  <button id="dispCancel" class="bones" onclick="submitDisp('s')">Exit</button>
+  <button id="dispSubmit" class="bones" onclick="submitDisp('s')">Submit</button>
+  <button id="dispDefault" class="bones" onclick="submitDisp('d')">Default</button>
 </div>
-
-
+<div class="CMeditDIV backing" id="contEdit" style="display:none; text-align: center;">
+  <div id="ContentDisplay" class="noShow"><br><br><b>Edit Content</b></div>
+  <div id="ContentEditor" style="box-shadow:none; border:3px dashed var(--my-background-color); background:white;" contenteditable></div>
+  <button id="contSubmit" class="bones" onclick="submitCont()">Submit</button>
+  <button id="contCancel" class="bones" onclick="cancelCont()">Exit</button>
+  <button id="contDefault" class="bones" onclick="defaultCont()">Default</button>
+</div>
+<div class="CMeditDIV backing" id="sizeEdit" style="display:none; text-align: center;">
+  <div id="heightMod" class="noShow" style="text-align: center;">
+    <button id="hplus" class="moveBTNS" onclick="heightChange('5')">&#x2B9E;</button><br><br>
+    <button id="hminus" class="moveBTNS" onclick="heightChange('-5')">&#x2B9C;</button>
+  </div>
+  <div id="widthMod" class="noShow" style="text-align: center;">
+    <button  id="wplus" class="moveBTNS" onclick="widthChange('5')">&#x2B9E;</button>
+    <button  id="wminus" class="moveBTNS" onclick="widthChange('-5')">&#x2B9C;</button>
+  </div>
+    <button id="sizeShow" class="bones"></button>
+    <button id="sizeSubmit" class="bones" onclick="sizeSubmit('s')">Submit</button>
+    <button id="sizeDefault" class="bones" onclick="sizeSubmit('d')">Default</button>
+  <button id="sizeCancel" class="bones" onclick="sizeSubmit()">Exit</button>
+</div>
+<div class="CMeditDIV backing" id="posEdit" style="display:none">
+  <button class="moveBTNS" id="upBTN" onclick="udMove('-5')">&#x2B9E;</button>
+  <button class="moveBTNS" id="downBTN" onclick="udMove('5')">&#x2B9C;</button>
+  <button class="moveBTNS" id="leftBTN" onclick="lrMove('-5')">&#x2B9C;</button>
+  <button class="moveBTNS" id="rightBTN" onclick="lrMove('5')">&#x2B9E;</button>
+  <button id="posSubmit" class="astext" onclick="posSubmit('s')">Submit</button>
+  <button id="posDefault" class="astext" onclick="posSubmit('d')">Default</button>
+  <button id="posCancel" class="astext" onclick="posSubmit('s')">Exit</button>
+</div>
 
                                                 <!-- Toggle Menu -->
 
@@ -722,8 +772,112 @@ body {
   <div id="switchdiva4" class="noShow sd">
     <label id="switcha4" class="switch"><input type="checkbox" id="a4" onclick="toggleConductor(this.id)"><span class="slider round"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspReset
   </div><br>
+  <div id="switchdivf0" class="noShow sd">
+    <label id="switchf0" class="switch"><input type="checkbox" id="u0" onclick="toggleConductor(this.id)"><span class="slider round"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCUSTOM0
+  </div><br>
+  <div id="switchdivf1" class="noShow sd">
+    <label id="switchf1" class="switch"><input type="checkbox" id="u1" onclick="toggleConductor(this.id)"><span class="slider round"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCUSTOM1
+  </div><br>
+  <div id="switchdivf2" class="noShow sd">
+    <label id="switchf2" class="switch"><input type="checkbox" id="u2" onclick="toggleConductor(this.id)"><span class="slider round"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCUSTOM2
+  </div><br>
+  <div id="switchdivf3" class="noShow sd">
+    <label id="switchf3" class="switch"><input type="checkbox" id="u3" onclick="toggleConductor(this.id)"><span class="slider round"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCUSTOM3
+  </div><br>
+  <div id="switchdivf4" class="noShow sd">
+    <label id="switchf4" class="switch"><input type="checkbox" id="u4" onclick="toggleConductor(this.id)"><span class="slider round"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCUSTOM4
+  </div><br>
+  <div id="switchdivf5" class="noShow sd">
+    <label id="switchf5" class="switch"><input type="checkbox" id="u5" onclick="toggleConductor(this.id)"><span class="slider round"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCUSTOM5
+  </div><br>
+  <div id="switchdivf6" class="noShow sd">
+    <label id="switchf6" class="switch"><input type="checkbox" id="u6" onclick="toggleConductor(this.id)"><span class="slider round"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCUSTOM6
+  </div><br>
+  <div id="switchdivf7" class="noShow sd">
+    <label id="switchf7" class="switch"><input type="checkbox" id="u7" onclick="toggleConductor(this.id)"><span class="slider round"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCUSTOM7
+  </div><br>
+  <div id="switchdivf8" class="noShow sd">
+    <label id="switchf8" class="switch"><input type="checkbox" id="u8" onclick="toggleConductor(this.id)"><span class="slider round"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCUSTOM8
+  </div><br>
+  <div id="switchdivf9" class="noShow sd">
+    <label id="switchf9" class="switch"><input type="checkbox" id="u9" onclick="toggleConductor(this.id)"><span class="slider round"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCUSTOM9
+  </div><br>
   <div id="switchp3" class="noShow sd"> &nbsp</div>
  </div>
+</div>
+
+                                                <!-- Custom Buttons -->
+
+<div id="custBtns" class="noShow">
+  <div id="custBtn0" class="noShow u0dispStat">
+    <button id="cust0" class="custom0 D R P C X"  oncontextmenu="customMenu(this.id, event)" onclick="conjunctionJunction(this.id)">CUSTOM0</button>
+  </div>
+  <div id="custBtn1" class="noShow u1dispStat">
+    <button id="cust1" class="custom0 D R P C X" oncontextmenu="customMenu(this.id, event)" onclick="conjunctionJunction(this.id)">CUSTOM1</button>
+  </div>
+  <div id="custBtn2" class="noShow u2dispStat">
+    <button id="cust2" class="custom0 D R P C X" oncontextmenu="customMenu(this.id, event)" onclick="conjunctionJunction(this.id)">CUSTOM2</button>
+  </div>
+  <div id="custBtn3" class="noShow u3dispStat">
+    <button id="cust3" class="custom0 D R P C X" oncontextmenu="customMenu(this.id, event)" onclick="conjunctionJunction(this.id)">CUSTOM3</button>
+  </div>
+  <div id="custBtn4" class="noShow u4dispStat">
+    <button id="cust4" class="custom0 D R P C X" oncontextmenu="customMenu(this.id, event)" onclick="conjunctionJunction(this.id)">CUSTOM4</button>
+  </div>
+  <div id="custBtn5" class="noShow u5dispStat">
+    <button id="cust5" class="custom0 D R P C X" oncontextmenu="customMenu(this.id, event)" onclick="conjunctionJunction(this.id)">CUSTOM5</button>
+  </div>
+  <div id="custBtn6" class="noShow u6dispStat">
+    <button id="cust6" class="custom0 D R P C X" oncontextmenu="customMenu(this.id, event)" onclick="conjunctionJunction(this.id)">CUSTOM6</button>
+  </div>
+  <div id="custBtn7" class="noShow u7dispStat">
+    <button id="cust7" class="custom0 D R P C X" oncontextmenu="customMenu(this.id, event)" onclick="conjunctionJunction(this.id)">CUSTOM7</button>
+  </div>
+  <div id="custBtn8" class="noShow u8dispStat">
+    <button id="cust8" class="custom0 D R P C X" oncontextmenu="customMenu(this.id, event)" onclick="conjunctionJunction(this.id)">CUSTOM8</button>
+  </div>
+  <div id="custBtn9" class="noShow u9dispStat">
+    <button id="cust9" class="custom0 D R P C X" oncontextmenu="customMenu(this.id, event)" onclick="conjunctionJunction(this.id)">CUSTOM9</button>
+  </div>
+</div>
+<div id="buttonSpot" class="noShow"></div>
+  <div id="infoDiv1" class="backing" style="display: none">
+    <b>Button Types:</b><br><br>
+    <b>Solo Note:</b> This is for adding text to the text area.<br>
+    This will not clear the text area or copy to the clipboard.<br>
+    There will be space before and after the inserted text.<br><br>
+    <b>Send Directly to Clipboard:</b> This will send your designated<br>
+    text to the clipboard. It will not display anything or affect <br>
+    any other text.<br><br><br>
+    <b>Note Chains</b><br><br>
+    <b>Primary Note</b>: This is for a starting a Chain Note that you can build upon<br>
+    This will clear the text area and insert your text but not copy it.<br><br>
+    <b>Link Note:</b> This is for a note used to continue the Chain.<br>
+    This will add text to the end of a Starter Note or another Link Note.<br><br>
+    <b>End Note:</b> This is for the last note in a Chain. This will add text<br>
+    to the existing note and copy all of it to the clipboard.<br>
+    <button id="infoDone" class="infoBtn bones D S P" onclick="infoDone()">Ready</button>
+    <button id="infoCancel" class="infoBtn bones D S P" onclick="infoCancel()">Cancel</button>
+  </div>
+  <div id="infoDiv2" class="backing" style="display: none"><br><br>
+    <div id="radioLine" class="noShow">
+      <b>Select the Button Type</b><br><br>
+      <input type="radio" id="SOLO" name="buttonType" value="SOLO">
+      <label for="SOLO">Solo Note</label><br>
+      <input type="radio" id="STCB" name="buttonType" value="STCB">
+      <label for="STCB">Send Directly to Clipboard</label><br>
+      <input type="radio" id="PRIN" name="buttonType" value="PRIN">
+      <label for="PRIN">Primary Note</label><br>
+      <input type="radio" id="LINK" name="buttonType" value="LINK">
+      <label for="LINK">Link Note</label><br>
+      <input type="radio" id="ENDN" name="buttonType" value="ENDN">
+      <label for="ENDN">End Note</label><br>
+   </div>
+    <p><textarea id="BtnDisplay" placeholder="Button Display..." name="btnDisplay" rows="1" cols="35"></textarea></p>
+    <p><textarea id="BtnContent" placeholder="Note Content..." name="btnContent" rows="5" cols="35"></textarea></p>
+    <button id="infoCancel2" class="infoBtn bones D S P" onclick="infoCancel2()">Cancel</button>
+    <button id="infoDone2" class="infoBtn bones D S P" onclick="infoDone2()">Done</button>
+  </div>
 </div>
 
                                         <!-- Textareas and Hidden  -->
@@ -746,6 +900,8 @@ TIME:&nbsp&nbsp</textarea>
 <textarea autocomplete="off" title="Hidden" id="textarea5" class="hideME noShow" name="name"></textarea>
 <textarea autocomplete="off" title="Hidden" id="textareadata" class="hideME noShow" name="name"></textarea>
 <textarea style="display: none;" id="EDITarea"></textarea>
+
+                                                <!-- Bulk Prices -->
 
 <div id="div6" class="dbacking div6" style="display: none">
   REG OIL: 7.13<br>
@@ -772,8 +928,11 @@ TIME:&nbsp&nbsp</textarea>
   SEALANT/RTV: 13.37 PER 3.5OZ<br>
 </div>
 
+                                                <!-- Numbers -->
+
 <div id="NUMBERS2" class="noShow">
-<div id="NUMBERS" class="div4 noShow"><b>PAYMENTS FAX<br>303-456-1039<br><br>
+<div id="NUMBERS" class="div4 noShow">
+<b>PAYMENTS FAX<br>303-456-1039<br><br>
  RECORDS FAX<br>303-420-4722<br><br>
  CAR SHIELD<br>800-430-1705<br><br>
  ROADSIDE ASSITANCE<br>866-222-7869<br><br>
@@ -782,7 +941,7 @@ TIME:&nbsp&nbsp</textarea>
 </div>
 
 <div id="myInfo" class="infoOfme" style="display:none;">Created By Jesse Williams - 2024</div>
-<div id="glowDiv" class="neon noShow P"></div>
+<div id="glowDiv" class="neon noShow P" oncontextmenu="customMenu(this.id, event)"></div>
 
                                           <!-- Tools and Policy -->
 
@@ -805,6 +964,7 @@ TIME:&nbsp&nbsp</textarea>
     <button class="tablinks edgeButton" onclick="openInfo(event, 'PANoOrder')">Do Not Order</button>
   </div>
 
+                                                <!-- Quick Ans -->
 
   <div id="QuickAns" class="tabcontent">
     <h3 class="headerTab" style="margin-bottom:0px;">Common questions</h3>
@@ -907,6 +1067,7 @@ TIME:&nbsp&nbsp</textarea>
     </div>
   </div>
 
+                                                <!-- Labor Mileage Discrept -->
 
   <div id="MileDiscrep" class="tabcontent">
     <h3 class="headerTab">Mileage Discrepancies</h3>
@@ -929,7 +1090,7 @@ TIME:&nbsp&nbsp</textarea>
     <div id="under90hmpd" class="mileage noShow" style="display:none;">
       <p><b>Does the contract have the <b>Commercial</b> or <b>Ride Share</b> surcharge?</b>
         <input type="radio" onclick="proceed()" class="mdguide" id="md9" name="discrep4"><label for="md9" style="float:right;" required><b>Yes</b></label><br>
-        <input type="radio" onclick="noride()" class="mdguide" id="md10" name="discrep4"><label for="md10" style="float:right; required"><b>No</b></label>
+        <input type="radio" onclick="noride()" class="mdguide" id="md10" name="discrep4"><label for="md10" style="float:right;" required><b>No</b></label>
       </p>
     </div>
     <div id="norideshare" class="mileage noShow" style="display:none;">
@@ -972,6 +1133,7 @@ TIME:&nbsp&nbsp</textarea>
     </div>
   </div>
 
+                                                <!-- Price Guide -->
 
   <div id="PAPrice" class="tabcontent">
     <h3 class="headerTab">Parts Pricing - PA and Sourcing</h3>
@@ -1066,6 +1228,7 @@ TIME:&nbsp&nbsp</textarea>
   <button id="resetPA" class="wefwefwef" onclick="resetGuide()">Reset</button>
   </div>
 
+                                                <!-- PA No Order -->
 
   <div id="PANoOrder" class="tabcontent">
   <h3 class="headerTab">Do Not Order These Parts From PA</h3>
@@ -1107,6 +1270,7 @@ TIME:&nbsp&nbsp</textarea>
     </div>
   </div>
 
+                                                <!-- Diagnostic Times -->
 
   <div id="Diagnostic" class="tabcontent">
     <h3 class="headerTab">Common Diagnostic Times</h3>
@@ -1153,6 +1317,7 @@ TIME:&nbsp&nbsp</textarea>
       </div>
   </div>
 
+                                                <!-- Tracker Tool -->
 
   <div id="trackerTool" class="tabcontent">
   <div id="tableDiv" class="noteBins arise tableSize">
@@ -1162,17 +1327,7 @@ TIME:&nbsp&nbsp</textarea>
       <th class="inptTbl">Date</th>
       <th class="inptTbl">Mileage</th>
       <th class="inptTbl">&imacr;</th>
-      <td colspan="2" class="lastCell"><button id="addLineBtn" class="min rec" onclick="addLine()">Add Line</button></td>
-      <th class="lastCell"></td>
-    </tr>
-    <tr id="incTab">
-      <th class="inptTbl">Inception</th>
-      <td class="inptTbl tblDate"><input type="date" id="incDate" class="tracker inc"></td>
-      <td class="inptTbl tblMile"><input type="number" id="incMile" class="tracker inc"></td>
-      <td class="inptTbl tblRadio"><input type="radio" id="incC" class="tracker rec" style="visibility:hidden"></td>
-      <td class="wider"><button id="incN" class="min inc" onclick="showNote(this.id)">Add Note</button></td>
-      <td class="lastCell"><button id="incS" class="min inc" onclick="saveRecord(this.id)">Save</button></td>
-      <td class="lastCell"><button id="incD" class="min inc" onclick="delRecord(this.id)">Del</button></td>
+      <td colspan="3" class="lastCell"><button id="addLineBtn" class="min rec" onclick="addLine()">Add Line</button><button id="saveallRecs" class="min rec" onclick="saveAll()">Save All</button></td>
     </tr>
     <tr id="serTab">
       <th class="inptTbl">Service</th>
@@ -1183,11 +1338,20 @@ TIME:&nbsp&nbsp</textarea>
       <td class="lastCell"><button id="serS" class="min ser" onclick="saveRecord(this.id)">Save</button></td>
       <td class="lastCell"><button id="serD" class="min ser" onclick="delRecord(this.id)">Del</button></td>
     </tr>
+    <tr id="incTab">
+      <th class="inptTbl">Inception</th>
+      <td class="inptTbl tblDate"><input type="date" id="incDate" class="tracker inc"></td>
+      <td class="inptTbl tblMile"><input type="number" id="incMile" class="tracker inc"></td>
+      <td class="inptTbl tblRadio"><input type="radio" id="incC" class="tracker rec" style="visibility:hidden"></td>
+      <td class="wider"><button id="incN" class="min inc" onclick="showNote(this.id)">Add Note</button></td>
+      <td class="lastCell"><button id="incS" class="min inc" onclick="saveRecord(this.id)">Save</button></td>
+      <td class="lastCell"><button id="incD" class="min inc" onclick="delRecord(this.id)">Del</button></td>
+    </tr>
     <tr id="recTab0">
       <th class="inptTbl">Record</th>
       <td class="inptTbl tblDate"><input type="date" id="rec0Date" class="tracker rec"></td>
       <td class="inptTbl tblMile"><input type="number" id="rec0Mile" class="tracker rec"></td>
-      <td class="inptTbl tblRadio"><input type="radio" id="rec0C" class="tracker rec" name="jeff"></input></td>
+      <td class="inptTbl tblRadio"><input type="radio" id="rec0C" class="tracker rec" name="jeff" checked></input></td>
       <td class="wider"><button id="rec0N" class="min rec" onclick="showNote(this.id)">Add Note</button></td>
       <td class="lastCell"><button id="rec0S" class="min rec" onclick="saveRecord(this.id)">Save</button></td>
       <td class="lastCell"><button id="rec0D" class="min rec" onclick="delRecord(this.id)">Del</button></td>
@@ -1261,6 +1425,7 @@ TIME:&nbsp&nbsp</textarea>
   </div>
 </div>
 
+                                                <!-- Parts Res -->
 
   <div id="partsRes" class="tabcontent noteBins arise">
     <h3 class="headerTab" style="margin-bottom:0px;">Parts Resolution</h3><br>
@@ -1276,7 +1441,7 @@ TIME:&nbsp&nbsp</textarea>
       <ul>
       <li>Note the RF contact name, mileage, labor rate, and labor time for the part.</li>
       <li>Select the 'Parts' tab in CMS and click 'Parts Ordered'.</li>
-      <li>Click the checkbox next to the part select 'Parts Resolution'.</li>
+      <li>Click the checkbox next to the part. Select 'Parts Resolution'.</li>
       <li>Select the repair facility and click 'Next'.</li>
       <li>Select the repair facility contact.</li>
       <li>Enter the mileage, labor rate and hours, if the part was installed, and the case reason.</li>
@@ -1289,6 +1454,7 @@ TIME:&nbsp&nbsp</textarea>
       </ul>
   </div>
 
+                                                <!-- Tesla -->
 
   <div id="Tesla" class="tabcontent noteBins arise">
     <h3 class="headerTab">Tesla</h3>
@@ -1307,6 +1473,7 @@ TIME:&nbsp&nbsp</textarea>
       Advise the Repair Facility that the team that handles Tesla claims will reach out with-in 24 hours.</p>
   </div>
 
+                                                <!-- Do Not Use -->
 
   <div id="DoNotUse" class="tabcontent noteBins arise">
     <h3 class="headerTab">Do Not Use vs STOP-NO CLAIMS ALLOWED</h3>
@@ -1321,6 +1488,9 @@ TIME:&nbsp&nbsp</textarea>
     <p class="bodyTab">Do not share any details or speculation about the RF to the CH or anyone from the RF.</p>
     <p class="bodyTab">Document all actions taken in the notes.</p>
   </div>
+
+                                                <!-- 2790 Xfer -->
+
   <div id="xfer2790" class="tabcontent noteBins arise">
     <h3 class="headerTab">2790</h3>
     <p><b>Don't let the big red banner scare you off.</b></p>
@@ -1331,6 +1501,7 @@ TIME:&nbsp&nbsp</textarea>
     <p class="bodyTab">And of course, if you are not sure of what steps you should take, reach out to your TL.</p>
   </div>
 
+                                                <!-- Is It PT -->
 
   <div id="IsItPT" class="tabcontent noteBins arise">
     <h3 class="headerTab">Is It PT?</h3>
@@ -1352,6 +1523,7 @@ TIME:&nbsp&nbsp</textarea>
     A/C Concerns</p>
   </div>
 
+                                                <!-- MBI Claims -->
 
   <div id="MBIClaims" class="tabcontent noteBins arise">
     <h3 class="headerTab">MBI Claims</h3>
@@ -1372,6 +1544,7 @@ TIME:&nbsp&nbsp</textarea>
   <button id="exitRec" class="wefwefwef" onclick="closeResource()">Exit</button>
 </div>
 
+                                                <!-- Output Div -->
 
   <div id="outputDiv" class="noteBins outputDiv">
     <div id="alertDiv" class="noShow" onclick="showMsg()"></div>
@@ -1388,7 +1561,7 @@ TIME:&nbsp&nbsp</textarea>
 
                                           <!-- Diagnostic -->
 
-<div id="diagDiv" class="backing" style="display:none;">
+<div id="diagDiv" style="display:none;">
   <div id="diagBtns" class="tab">
     <button class="tablinks2" onclick="openInfo2(event, 'Cooling')">Cooling</button>
     <button class="tablinks2" onclick="openInfo2(event, 'Turbo')">Turbo</button>
@@ -1403,7 +1576,7 @@ TIME:&nbsp&nbsp</textarea>
     <div class="diagTop">
       <div class="diagTop left">
         <genopHead>General Operation Principals</genopHead>
-          <ul style="font-size:15px;">
+        <ul style="font-size:15px;">
           <li>The cooling system prevents the engine from overheating by absorbing heat generated from combustion and releasing it into the atmosphere through the radiator.</li>
           <li>The main components are the water pump, radiator, thermostat, and cooling fans.</li>
           <li>The water pump circulates the coolant through the system.</li>
@@ -1417,44 +1590,44 @@ TIME:&nbsp&nbsp</textarea>
         <img src="./Images/CoolingImg.PNG" alt="./imgBackup/CoolingImg.PNG" class="diagImg">
       </div>
     </div>
-    <div class="diagMid marginCall">
-      <table class="diagtable">
+    <div class="diagMid">
+      <table id="Coolingin" class="diagtable">
         <tr>
           <th class="diag">Fluids: Level, Condition, Contamination?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Was a pressure test completed? Where is the leak?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any codes stored? List and define.</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
-          <th class="diag">Any freeze freame data available? Date/Mileage?</th>
-          <td class="diag"><input></td>
+          <th class="diag">Any freeze frame data available? Date/Mileage?</th>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Did the vehicle overheat? Any further damage?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any previous engine repairs?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any signs of impact damage or corrosion as the COF?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">What is the root cause of overheating?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
       </table>
     </div>
     <div class="diagBot">
-      <textarea class="diag" placeholder="Notes..."></textarea>
+      <textarea id="CoolingTA" class="diag" placeholder="Notes..."></textarea>
     </div>
   </div>
   <div id="Turbo" class="diagcontent">
@@ -1467,7 +1640,7 @@ TIME:&nbsp&nbsp</textarea>
           <li>The compressed air is cooled before being sent to the engine.</li>
           <li>Compressed air has a higher density of oxygen which allows more fuel to be burnt which increases power output.</li>
           <li>When there is more boost available than the engine needs, the wastegate opens to vent the uneeded boost pressure.</li>
-      </ul>
+        </ul>
       </div>
       <div class="diagTop right" onclick="magnify('turbo')">
         <genopHeadimg>Turbo</genopHeadimg>
@@ -1475,39 +1648,39 @@ TIME:&nbsp&nbsp</textarea>
       </div>
     </div>
     <div class="diagMid">
-      <table class="diagtable">
+      <table id="Turboin" class="diagtable">
         <tr>
           <th class="diag">Any codes stored? List and define.</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any freeze frame data available? Date/Mileage?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any noise, smoke, etc?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any play in the turbo shaft?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Wastegate and actuator operating properly?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any previous engine repairs?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Oil or coolant leaks from turbo?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
       </table>
     </div>
     <div class="diagBot">
-      <textarea class="diag" placeholder="Notes..."></textarea>
+      <textarea id="TurboTA" class="diag" placeholder="Notes..."></textarea>
     </div>
   </div>
   <div id="Electrical" class="diagcontent">
@@ -1515,12 +1688,10 @@ TIME:&nbsp&nbsp</textarea>
       <div class="diagTop left">
         <genopHead>General Operation Principals</genopHead>
         <ul>
-           <li>The battery is used to power the starter while the vehicle is not running.
-           <li>While the engine is running, the alternator produces approximately 13.6 volts.</li>
-           <li>That voltage is what recharges the battery and provides power to all electrical
-           components of the vehicle.</li>
-           <li>For any electrical component to operate, there must be voltage supplied (+) and
-           a path for that voltage to return (-).</li>
+          <li>The battery is used to power the starter while the vehicle is not running.
+          <li>While the engine is running, the alternator produces approximately 13.6 volts.</li>
+          <li>That voltage is what recharges the battery and provides power to all electrical components of the vehicle.</li>
+          <li>For any electrical component to operate, there must be voltage supplied (+) and a path for that voltage to return (-).</li>
         </ul>
       </div>
       <div class="diagTop right" onclick="magnify('electrical')">
@@ -1529,39 +1700,39 @@ TIME:&nbsp&nbsp</textarea>
       </div>
     </div>
     <div class="diagMid">
-      <table class="diagtable">
+      <table id="Electricalin" class="diagtable">
         <tr>
           <th class="diag">Is there a Check engine light or other warning lights?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any codes stored? List and define.</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Alternator/Battery test results?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Verified power and ground?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any other circuit/pinpoint tests?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any other potential causes tested?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Fluid intrusion/corrosion/damaged wires?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
       </table>
     </div>
     <div class="diagBot">
-      <textarea class="diag" placeholder="Notes..."></textarea>
+      <textarea id="ElectricalTA" class="diag" placeholder="Notes..."></textarea>
     </div>
   </div>
   <div id="Fuel" class="diagcontent">
@@ -1582,39 +1753,39 @@ TIME:&nbsp&nbsp</textarea>
       </div>
     </div>
     <div class="diagMid">
-      <table class="diagtable">
+      <table id="Fuelin" class="diagtable">
         <tr>
           <th class="diag">Is there fuel in the vehicle?  Has fuel filter been serviced?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Power and ground to pump?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Fuel pressure test results?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any codes stored? List and define.</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Fuel pressure at fuel rail - Actual/Spec?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Is the injector stuck open, clogged or not functioning?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any other testing performed?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
       </table>
     </div>
     <div class="diagBot">
-      <textarea class="diag" placeholder="Notes..."></textarea>
+      <textarea id="FuelTA" class="diag" placeholder="Notes..."></textarea>
     </div>
   </div>
   <div id="Steering" class="diagcontent">
@@ -1635,40 +1806,40 @@ TIME:&nbsp&nbsp</textarea>
         <img src="./Images/SteeringImg.PNG" alt="./imgBackup/SteeringImg.PNG" class="diagImg">
       </div>
     </div>
-    <div class="diagMid marginCall">
-      <table class="diagtable">
+    <div class="diagMid">
+      <table id="Steeringin" class="diagtable">
         <tr>
           <th class="diag">Any noises while turning, if so describe?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">What is condition of tie rods, if damaged describe?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Power steering fluid level?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any power steering leaks?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any codes stored? List and define.</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any other testing performed?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any signs of impact damage?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
       </table>
     </div>
     <div class="diagBot">
-      <textarea class="diag" placeholder="Notes..."></textarea>
+      <textarea id="SteeringTA" class="diag" placeholder="Notes..."></textarea>
     </div>
   </div>
   <div id="Suspension" class="diagcontent">
@@ -1690,94 +1861,95 @@ TIME:&nbsp&nbsp</textarea>
       </div>
     </div>
     <div class="diagMid">
-      <table class="diagtable">
+      <table id="Suspensionin" class="diagtable">
         <tr>
           <th class="diag">Any suspension noises, if so describe?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any signs of impact damage?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Signs of rust or corrosion as COF?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any play in suspension components?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Are bushings worn, torn, cracked or dry rotted?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Was diag: test drive, visual inspection, leverage?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
       </table>
     </div>
     <div class="diagBot">
-      <textarea class="diag" placeholder="Notes..."></textarea>
+      <textarea id="SuspensionTA" class="diag" placeholder="Notes..."></textarea>
     </div>
   </div>
   <div id="AC" class="diagcontent">
     <div class="diagTop">
       <div class="diagTop left">
         <genopHead>General Operation Principals</genopHead>
-        <p>
-          <li>There are 4 processes involved in air conditioning: compression, condensation, expansion, and evaporation.</li>
+        <ul>
+          <li>The 4 processes in A/C: compression, condensation, expansion, and evaporation.</li>
           <li>The A/C compressor compresses incoming gas refrigerant increasing it's temperature and pressure.</li>
           <li>The compressed gas travels to the condenser where heat is released and the gas is condensed to liquid form.</li>
-          <li>The high pressure liquid refrigerant is passed through a drier to remove any moisture before arriving at the expansion device.</li>
-          <li>The expansion device is a restriction that controls flow in to a line of larger volume initiating the low pressure side cooling the liquid even more.</li>
-          <li>The cool, low pressure liquid enters the evaporator, boils as it absorbs the heat from the cabin, and becomes a gas again.</li>
-          <li>The low pressure, hot gas returns to the compressor to complete the cycle.</li>
+          <li>The high pressure liquid refrigerant is passed through a drier before arriving at the expansion device.</li>
+          <li>The expansion device is a restriction that controls flow in to a line of larger volume initiating the low pressure side, cooling the liquid even more.</li>
+          <li>The cool, low pressure liquid boils, becoming a gas in the evaporator as it absorbs heat from the cabin.</li>
+          <li>It returns to the compressor to complete the cycle.</li>
         </ul>
       </div>
       <div class="diagTop right" onclick="magnify('ac')">
         <genopHeadimg>Air Conditioning</genopHeadimg>
         <img src="./Images/ACImg.PNG" alt="./imgBackup/ACImg.PNG" class="diagImg">
       </div>
+    <button class="astext acPress" onclick="magnify('ac2')">Pressure Chart</button>
     </div>
     <div class="diagMid">
-      <table class="diagtable">
+      <table id="ACin" class="diagtable">
         <tr>
           <th class="diag">What is the ambient temperature/vent temperature?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Is there any refrigerant in the system?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">How much refrigerant was recovered?  What is the system spec?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Is the A/C compressor clutch activating?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">What are the H/L side pressures? Are they out of range?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Was a leak test performed?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">If leaking, where from? Any further damage?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Contamination in system? If so, send photos.</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
       </table>
     </div>
     <div class="diagBot">
-      <textarea class="diag" placeholder="Notes..."></textarea>
+      <textarea id="ACTA" class="diag" placeholder="Notes..."></textarea>
     </div>
   </div>
   <div id="Timing" class="diagcontent">
@@ -1798,46 +1970,48 @@ TIME:&nbsp&nbsp</textarea>
       </div>
     </div>
     <div class="diagMid">
-      <table class="diagtable">
+      <table id="Timingin" class="diagtable">
         <tr>
           <th class="diag">Any codes stored? List and define.</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any freeze frame data available? Date/Mileage?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Does the vehicle have a timing chain or belt?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">If a belt was there maintenance performed at correct mileage?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Was there any damage to the engine from this failure?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Is there any noises from the chain or belt area?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">Any previous engine repairs?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
         <tr>
           <th class="diag">What is the COF?</th>
-          <td class="diag"><input></td>
+          <td class="diag" contenteditable></td>
         </tr>
       </table>
     </div>
     <div class="diagBot">
-      <textarea class="diag" placeholder="Notes..."></textarea>
+      <textarea id="TimingTA" class="diag" placeholder="Notes..."></textarea>
     </div>
   </div>
-  <button id="exitRcrce2" class="wefwefwef" onclick="closeResource2()">Exit</button>
+  <button id="clearDiag" class="wefwefwef D R P" onclick="diagAction('clear')">Clear</button>
+  <button id="copyDiag" class="wefwefwef D R P" onclick="diagAction('copy')">Copy</button>
+  <button id="exitRcrce2" class="wefwefwef D R P" onclick="closeResource2()">Exit</button>
   <div id="theDepot" class="imageDepot" onclick="magnify('back')">
     <img src="./Images/CoolingImg.PNG" alt="./imgBackup/CoolingImg.PNG" class="depotImg" id="coolingDepot">
     <img src="./Images/TurboImg.PNG" alt="./imgBackup/TurboImg.PNG" class="depotImg" id="turboDepot">
@@ -1847,14 +2021,18 @@ TIME:&nbsp&nbsp</textarea>
     <img src="./Images/SuspensionImg.PNG" alt="./imgBackup/SuspensionImg.PNG" class="depotImg" id="suspensionDepot">
     <img src="./Images/TimingImg.PNG" alt="./imgBackup/TimingImg.PNG" class="depotImg" id="timingDepot">
     <img src="./Images/ACImg.PNG" alt="./imgBackup/ACImg.PNG" class="depotImg" id="acDepot">
+    <img src="./Images/ACImg2.PNG" alt="./imgBackup/ACImg2.PNG" class="depotImg" id="ac2Depot">
   </div>
 </div>
+
+                                                <!-- Labor Script Div -->
+
 <div id="laborscriptDiv" class="ls_main" style="display:none;">
-  <div class="ls_sub2">
+  <div class="ls_sub">
     <h3 class="head_labor">Labor Rate Script</h3>
     <div class="left_div revert">
       <p>
-      Ask the RF:<br>What is the current posted labor rate at your Repair Facility?
+        Ask the RF:<br>What is the current posted labor rate at your Repair Facility?
       </p>
       <p>
         Optional:<br>
@@ -1902,30 +2080,264 @@ TIME:&nbsp&nbsp</textarea>
           <label for="quant">Number of Facilities:</label>
         </div>
       </div>
-      <p>
+      <p class="aveRatep">
         <label for="aveRate">Average Labor Rate:</label><br>
         $<input type="number" id="aveRate" step=".01" required>
       </p>
-      <button id="myScript" class="script_btn2 D R P" onclick="laborScript()">My Response</button>
-      <div id="responseDiv" class="flt_lft2 revert" style="display:none;">
+      <button id="myScript" class="script_btn D R P" onclick="laborScript()">My Response</button>
+      <div id="responseDiv" class="flt_lft revert" style="display:none;">
         <div id="responseDiv_text" class="revert">The response is:<br></div>
-        <button id="yesScript" class="script_btn2 D R P" onclick="negotiateScript('y')">Yes</button>
-        <button id="noScript" class="script_btn2 D R P" onclick="negotiateScript('n')">No</button>
+        <button id="yesScript" class="script_btn D R P" onclick="negotiateScript('y')">Yes</button>
+        <button id="noScript" class="script_btn D R P" onclick="negotiateScript('n')">No</button>
         <div id="rf_offer_div" class="revert">
           <div id="sub_offer_div" class="sub_offer revert"><label for="custom">The RF offered: </label><br>
           $<input type="number" id="custom" step=".01"></div>
-          <button id="acceptScript" class="script_btn2 D R P" onclick="negotiateScript('a')">Accept</button>
+          <button id="acceptScript" class="script_btn D R P" onclick="negotiateScript('a')">Accept</button>
         </div>
-      <button id="resetScript" class="script_btn2 D R P" onclick="negotiateScript('r')">Reset</button>
+      <button id="resetScript" class="script_btn D R P" onclick="negotiateScript('r')">Reset</button>
       </div>
     </div>
-    <button id="exitScript" class="script_btn2 D R P" onclick="negotiateScript('r');openScript()">Exit</button>
+    <button id="exitScript" class="script_btn D R P" onclick="negotiateScript('r');openScript()">Exit</button>
+    <button id="instructScript" class="script_btn D R P" onclick="instructScript()">Instructions</button>  <br>
+    <div id="instructL" class="instructLabor">
+      <b>Instructions:</b><br>
+      <ul>
+        <li>Enter the Repair Facility response into RF Posted Labor Rate.</li>
+        <li>*Optional: Enter the labor rate that is currently in CMS.*</li>
+        <li>Select the options for Radius, Facility Type, and Number of Facilities that you used for searching SWIS.</li>
+        <li>Enter the Average Labor Rate SWIS output.</li>
+        <li>Click 'My Response'.</li>
+        <li>It will show a dialog box containing the appropriate response or question.</li>
+        <li>Use the 'Yes' and 'No' buttons to input their response back.</li>
+        <li>*Optional: If they make an offer, enter it into the box and click 'Accept'.*</li>
+        <li>When completed, click 'Exit'.</li>
+        <li>The completed note is already in your clipboard ready to be pasted.</li>
+        <li>Use reset to clear the form and start over if needed.</li>
+      </ul>
+    </div> 
   </div>
 </div>
-<script src="JavaScript/Variable.js"></script>
-<script src="JavaScript/OGLAYOUTJS.js"></script>
-<script src="JavaScript/ChangeAppearance2.js"></script>
-<script src="JavaScript/commonScript.js"></script>
+
+                                                <!-- CH Statement Questions -->
+
+<div id="statement" class="state_back" style="display:none;">
+  <div id="statement" class="state_main">
+    <h3 class="headerTab" style="margin-bottom:30px;">CH Statement</h3>
+    <div id="state1" class="chState_div">
+      <div class="CS_top"><b>Can you describe what happened?</b>
+      </div>
+      <div class="CS_bot">
+        <textarea class="stmt_temp_ta" id="state1ans"></textarea>
+      </div>
+    </div>
+    <div id="state2" class="chState_div" style="display:none;">
+      <div class="CS_top"><b>When did the issue first occur?</b>
+      </div>
+      <div class="CS_bot">
+        <textarea class="stmt_temp_ta" id="state2ans"></textarea>
+      </div>
+    </div>
+    <div id="state3" class="chState_div" style="display:none;">
+      <div class="CS_top"><b>Were there any prior related issues?</b><br>
+      </div>
+      <div class="CS_bot">
+        <input type="radio" onclick="advanceState(this.id)" class="Mradio stmt_temp_rad" id="chyes3" name="stateN1"><label for="chyes3">Yes</label><br>
+        <input type="radio" onclick="advanceState(this.id)" class="Mradio stmt_temp_rad" id="chno3" name="stateN1"><label for="chno3">No</label>
+      </div>
+    </div>
+    <div id="state4" class="chState_div" style="display:none;">
+      <div class="CS_top"><b>What were they and when did they occur?</b>
+      </div>
+      <div class="CS_bot">
+        <textarea class="stmt_temp_ta" id="state4ans"></textarea>
+      </div>
+    </div>
+    <div id="state5" class="chState_div" style="display:none;">
+      <div class="CS_top"><b>Were there any warning lights?</b>
+      </div>
+      <div class="CS_bot">
+        <input type="radio" onclick="advanceState(this.id)" class="Mradio stmt_temp_rad" id="chyes5" name="stateN2"><label for="chyes5">Yes</label><br>
+        <input type="radio" onclick="advanceState(this.id)" class="Mradio stmt_temp_rad" id="chno5" name="stateN2"><label for="chno5">No</label>
+      </div>
+    </div>
+    <div id="state6" class="chState_div" style="display:none;">
+      <div class="CS_top"><b>Please describe:</b>
+      </div>
+      <div class="CS_bot">
+        <textarea class="stmt_temp_ta" id="state6ans"></textarea>
+      </div>
+    </div>
+    <div id="state7" class="chState_div" style="display:none;">
+      <div class="CS_top"><b>Was there any noise, smoke, or smell?</b>
+      </div>
+      <div class="CS_bot">
+        <input type="radio" onclick="advanceState(this.id)" class="Mradio stmt_temp_rad" id="chyes7" name="stateN3"><label for="chyes7">Yes</label><br>
+        <input type="radio" onclick="advanceState(this.id)" class="Mradio stmt_temp_rad" id="chno7" name="stateN3"><label for="chno7">No</label>
+      </div>
+    </div>
+    <div id="state8" class="chState_div" style="display:none;">
+      <div class="CS_top"><b>Please describe:</b>
+      </div>
+      <div class="CS_bot">
+        <textarea class="stmt_temp_ta" id="state8ans"></textarea>
+      </div>
+    </div>
+    <div id="state9" class="chState_div" style="display:none;">
+      <div class="CS_top"><b>How long have you owned the vehicle?</b>
+      </div>
+      <div class="CS_bot">
+        <input type="number" class="stmt_temp_ta" id="time_owned" step=".1">
+        <select id="time_unit" class="stmt_temp_ta">
+          <option selected value="">Select an Option</option>
+          <option value="Years">Years</option>
+          <option value="Months">Months</option>
+          <option value="Weeks">Weeks</option>
+        </select>
+      </div>
+    </div>
+    <div id="state10" class="chState_div" style="display:none;">
+      <div class="CS_top"><b>Do you know the approximate mileage when you purchased it?</b> &nbsp;(If unsure, leave blank.)
+      </div>
+      <div class="CS_bot">
+        <input type="number" class="stmt_temp_ta " id="approx_mile" step="1">
+      </div>
+    </div>
+    <div id="state11" class="chState_div" style="display:none;">
+      <div class="CS_top"><b>Was the vehicle towed to the repair facility?</b>
+      </div>
+      <div class="CS_bot">
+        <input type="radio" onclick="advanceState(this.id)" class="Mradio stmt_temp_rad" id="chyes11" name="stateN4"><label for="chyes11">Towed</label><br>
+        <input type="radio" onclick="advanceState(this.id)" class="Mradio stmt_temp_rad" id="chno11" name="stateN4"><label for="chno11">Driven</label>
+      </div>
+    </div>
+    <div id="state12" class="chState_div" style="display:none;">
+      <div class="CS_top"><b>Where was it towed from and what tow company did you use?</b>
+      </div>
+      <div class="CS_bot">
+        <textarea class="stmt_temp_ta" id="state12ans"></textarea>
+      </div>
+    </div>
+    <div id="state13" class="chState_div" style="display:none;">
+      <div class="CS_top"><b>Any additional comments or notes:</b>
+      </div>
+      <div class="CS_bot">
+        <textarea class="stmt_temp_ta" id="state13ans"></textarea>
+      </div>
+    </div>
+     <button id="backState" class="wefwefwef" onclick="backState()">Back</button>
+     <button id="cancelState" class="wefwefwef" onclick="cancelState()">Cancel</button>
+     <button id="advanceState" class="wefwefwef" onclick="advanceState()">Next</button>
+  </div>
+</div>
+                                                <!-- Trans Auth -->
+
+<div id="module_trans_backing" class="module_backing">
+  <div id="module_trans_main" class="module_main">
+  <h3 class="trans_header">Transmission Authorization</h3>
+
+    <div id="module_trans_1" class="module_page trsnActive">
+      <div class="module_top">What type of unit was MCE?</div>
+      <div class="module_bot">
+        <input type="radio" id="trans_ans1a" name="trans_ans1" class="transRadio" value="remanufactured"><label for="trans_ans1a" class="transLabel">Remanufactured</label><br>
+        <input type="radio" id="trans_ans1b" name="trans_ans1" class="transRadio" value="used"><label for="trans_ans1b" class="transLabel">Used</label><br>
+        <input type="radio" id="trans_ans1c" name="trans_ans1" class="transRadio" value="new"><label for="trans_ans1c" class="transLabel">New</label><br><br>
+      </div>
+      <div class="module_top">What source had the MCE option?</div>
+      <div class="module_bot">
+        <input type="radio" id="trans_ans2a" name="trans_ans2" class="transRadio" value="C&K"><label for="trans_ans2a" class="transLabel">C&K</label><br>
+        <input type="radio" id="trans_ans2b" name="trans_ans2" class="transRadio" value="LKQ"><label for="trans_ans2b" class="transLabel">LKQ</label><br>
+        <input type="radio" id="trans_ans2c" name="trans_ans2" class="transRadio" value="AutoNation"><label for="trans_ans2c" class="transLabel">AutoNation</label><br>
+        <input type="radio" id="trans_ans2d" name="trans_ans2" class="transRadio" value="Teal"><label for="trans_ans2d" class="transLabel">Teal</label><br>
+        <input type="radio" id="trans_ans2d" name="trans_ans2" class="transRadio" value="American Auto Salvage"><label for="trans_ans2d" class="transLabel">American Auto Salvage</label><br><br>
+      </div>
+      <div class="module_top">Did you request an inspection, photos, or records?</div>
+      <div class="module_bot">
+        <input type="checkbox" id="trans_ans3a" name="trans_ans3a" class="transCheck" onclick="requestorNo('y')"><label for="trans_ans3a" class="labelCheck transLabel">Inspection</label><br>
+        <input type="checkbox" id="trans_ans3b" name="trans_ans3b" class="transCheck" onclick="requestorNo('y')"><label for="trans_ans3b" class="labelCheck transLabel">Photos</label><br>
+        <input type="checkbox" id="trans_ans3c" name="trans_ans3c" class="transCheck" onclick="requestorNo('y')"><label for="trans_ans3c" class="labelCheck transLabel">Records</label><br><br>
+        <input type="checkbox" id="trans_ans3d" name="trans_ans3d" class="transCheck" onclick="requestorNo('n')"><label for="trans_ans3d" class="labelCheck transLabel">No Requests</label><br><br>
+      </div>
+      <div class="module_top">What was our cost?</div>
+      <div class="module_bot">
+        <input type="number" id="trans_ans4" step=".01" class="transNum" name="trans_ansNum">
+        <label for="trans_ans3" class="translab transLabel">$</label>
+      </div>
+    </div>
+    <div id="module_trans_4" class="module_page">
+      <div id="module_trans_labor" class="labor_top">Labor Hours:
+        <div class="labor_right">
+          <button id="saveDiagT" class="labor_button" onclick="saveDiag('trans',this.id)">Add</button>
+          <button id="saveDiagL" class="labor_button" onclick="saveDiag('diag',this.id)">Add</button>
+          <button id="saveDiagF" class="labor_button ender" onclick="saveDiag('flush',this.id)">Add</button>
+          <button id="saveDiagC" class="labor_button" onclick="saveDiag('pull',this.id)">Add</button>
+          <button id="saveDiagD" class="labor_button" onclick="saveDiag('data',this.id)">Add</button>
+          <button id="saveDiagS" class="labor_button sideBy" onclick="saveDiag('sparkplus')">Add</button>
+          <button id="saveDiagS" class="labor_button sideBy" onclick="saveDiag('sparkminus')">Del</button><div id="totalspark">0</div>
+          <button id="saveDiagE" class="labor_button" onclick="saveDiag('point',this.id)">Add</button>
+          <button id="saveDiagP" class="labor_button" onclick="saveDiag('press',this.id)">Add</button>
+          <button id="saveDiagPan" class="labor_button" onclick="saveDiag('pan',this.id)">Add</button>
+        </div>
+        <div class="labor_right2">
+          R/R Transmission:<br>
+          Transmission Diagnostic:<br>
+          Flush Cooler:<br>
+          Diagnostic consisted of: <br>
+          Code Pull:<br>
+          Data Monitoring Add-on:<br>
+          Electrical Test:<br>
+          Pinpoint Test:<br>
+          Line Pressure test:<br>
+          Pan Drop:<br>
+        </div>
+        <div class="labor_right_trans">
+          <input type="number" id="trans_ans4a" class="labor_num" step=".01" name="trans_ansNum" placeholder="R/R"></input><br>
+          <input type="number" id="trans_ans4b" class="labor_num" step=".01" name="trans_ansNum" placeholder="Diag"></input><br>
+          <input type="number" id="trans_ans4c" class="labor_num" step=".01" name="trans_ansNum" placeholder="Flush"></input><br>
+        </div>
+      </div>
+    </div>
+    <div id="module_trans_7" class="module_page">
+      <div class="module_top last_top">How many months in coverage?</div>
+      <div class="module_bot last_bot">
+        <label for="trans_ans7" class="transLabel">Months</label>
+        <input type="number" id="trans_ans7" step="1" class="transNum" name="trans_ansNum">
+      </div>
+      <div class="module_top last_top">Any non-covered or denied components?</div>
+      <div class="module_bot last_bot1">
+        <input type="checkbox" id="trans_ans8e" name="trans_ans81" class="transCheck" onclick="noncovcomp('y')"><label for="trans_ans8e" class="transLabel">Non-Covered</label><br>
+        <input type="checkbox" id="trans_ans8f" name="trans_ans81" class="transCheck" onclick="noncovcomp('y')"><label for="trans_ans8f" class="transLabel">Denied</label><br>
+        <input type="checkbox" id="trans_ans8g" name="trans_ans81" class="transCheck" onclick="noncovcomp('n')"><label for="trans_ans8g" class="transLabel">No</label>
+      </div>
+      <div class="module_top last_top">Is OOPC or shipping a concern?</div>
+      <div class="module_bot last_bot2">
+        <input type="radio" id="trans_ans8a" name="trans_ans8" class="transRadio" onclick="showtransOop()"><label for="trans_ans8a" class="transLabel">OOPC</label><br>
+        <input type="radio" id="trans_ans8b" name="trans_ans8" class="transRadio" onclick="hidetransOop()"><label for="trans_ans8b" class="transLabel">Shipping</label><br>
+        <input type="radio" id="trans_ans8c" name="trans_ans8" class="transRadio" onclick="showtransOop()"><label for="trans_ans8c" class="transLabel">Both</label><br>
+        <input type="radio" id="trans_ans8d" name="trans_ans8" class="transRadio" onclick="hidetransOop()"><label for="trans_ans8d" class="transLabel">No Concerns</label><br><br>
+      </div>
+
+      <div id="module_trans_8qdiv" class="module_top last_top invisible">What is the cause of OOPC?</div>
+      <div id="module_trans_8adiv" class="module_bot last_bot3 invisible">
+        <input type="radio" id="trans_ans8h" name="trans_ans82" class="transRadio"><label for="trans_ans8h" class="transLabel">Parts</label><br>
+        <input type="radio" id="trans_ans8i" name="trans_ans82" class="transRadio"><label for="trans_ans8i" class="transLabel">Labor</label><br>
+        <input type="radio" id="trans_ans8j" name="trans_ans82" class="transRadio"><label for="trans_ans8j" class="transLabel">Both</label><br><br>
+        <label for="trans_ans8k" id="trans_ans8kl">OOPC Including DED</label><br>
+        <input type="number" id="trans_ans8k" name="trans_ansNum" step="0.01"><br>
+        <input type="radio" id="trans_ans9a" name="trans_ans9a" class="transRadio"><label id="trans_ans9al" for="trans_ans9a" class="transLabel">OOPC Total Unknown</label>
+      </div>
+    </div>
+    <div class="module_button_div">
+      <button id="submittDiag" class="labor_button" onclick="saveDiag('next')">Next</button>
+      <button id="backtDiag" class="labor_button" onclick="saveDiag('back')">Back</button>
+      <button id="canceltDiag" class="labor_button" onclick="saveDiag('cancel')">Cancel</button>
+    </div>
+  </div>
+</div>
+<div id="pdiv" class="noShow"><p></div>
+<script src="JavaScript/Variable.js?v=VERSION"></script>
+<script src="JavaScript/OGLAYOUTJS.js?v=VERSION"></script>
+<script src="JavaScript/ChangeAppearance2.js?v=VERSION"></script>
+<script src="JavaScript/commonScript.js?v=VERSION"></script>
 <script>
   setVer('2');
 </script>

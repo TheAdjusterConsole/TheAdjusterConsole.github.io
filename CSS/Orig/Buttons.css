@@ -12,7 +12,7 @@ This code is provided under the following terms and conditions:
 
 By using this code, you agree to abide by these terms and conditions. Failure to comply with these terms may result in legal action.
 
-For inquiries regarding licensing or permission to use this code in ways not covered by this license, please contact the author at AdjusterConsole.com.  */
+For inquiries regarding licensing or permission to use this code in ways not covered by this license, please contact the author at AdjusterConsole@gmail.com.  */
 /*Buttons, Stat Note, PT xfer, Auth, Menu, P and L */
 
 #picR {
@@ -37,6 +37,7 @@ For inquiries regarding licensing or permission to use this code in ways not cov
   height: 70px;
   left: 0px;
   top: 180px;
+
 }
 
 #T0{
@@ -79,24 +80,24 @@ For inquiries regarding licensing or permission to use this code in ways not cov
   top: 350px;
 }
 
-#theHoldup {
-  left: 235px;
-  bottom: 55px;
-  border-left: 2px solid var(--my-accent-color);
+#statusNote {
+  font-size: 22px;
+  top: 180px;
+  left: 380px;
+  width: 150px;
+  height: 60px;
 }
 
 .backing {
   position: absolute;
   display: inline-block;
+  border-radius: 20px;
   background: var(--fancy-background);
   box-shadow:
-   inset 0px 0px 10px 4px var(--my-shadow-color2),
-   0px 12px 70px 14px black;
+    inset 0px 0px 4px black,
+    inset 0px 0px 22px black,
+    20px 10px 70px 20px black;
   overflow: hidden;
-}
-
-.paddington {
-  padding: 15px;
 }
 
 .newStyle {
@@ -109,19 +110,11 @@ For inquiries regarding licensing or permission to use this code in ways not cov
 #statNoteinner {
   font-size: 16px;
   width: 40%;
-  height: 80%;
+  height: 88%;
   padding: 15px;
   margin: 15px;
   transition: .4s;
   transition-delay: .1s;
-}
-
-.newStyle.lftmid {
-  bottom: 300px;
-  right: 70px;
-  position: absolute;
-  display: inline-block;
-  padding: 15px;
 }
 
 .newStatus {
@@ -138,23 +131,13 @@ For inquiries regarding licensing or permission to use this code in ways not cov
   outline: none;
 }
 
-#littleHelp {
-  position: absolute;
-  display: inline-block;
-  font-size: 13px;
-  width: 40%;
-  height: 20%;
-  bottom: 75px;
-  right: 60px;
-}
-
 .newStyle.rgtupr {
-  top: 30px;
+  top: 90px;
   right: 45px;
   position: absolute;
   display: inline-block;
   padding: 10px;
-  height: 30%;
+  height: 55%;
   width: 40%;
 }
 
@@ -168,15 +151,7 @@ For inquiries regarding licensing or permission to use this code in ways not cov
   top: 15px;
   left: 15px;
   width: 92%;
-  height: 90%;
-}
-
-#statusNote {
-  font-size: 22px;
-  top: 180px;
-  left: 380px;
-  width: 150px;
-  height: 60px;
+  height: 60%;
 }
 
 #submitStat {
@@ -193,6 +168,10 @@ For inquiries regarding licensing or permission to use this code in ways not cov
   bottom: 5px;
   right: 145px;
   border-left: 2px solid var(--my-accent-color);
+}
+
+.paddington {
+  padding: 15px;
 }
 
 #transferTemplate {
@@ -347,6 +326,7 @@ input.ptRad {
 #newAuthstyle {
   position: absolute;
   display: inline-block;
+  background: var(--fancy-background);
   padding: 15px;
   top: 150px;
   left: 40px;
@@ -422,7 +402,7 @@ input.largerRadio {
   height: 20px;
   left: 0px;
   top: 20px;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   z-index: 5;
   color: black;
   text-shadow:
@@ -473,8 +453,12 @@ input.largerRadio {
   transition: all .2s ease;
 }
 
-#tutorialSel {
+#buttonMaker {
   transition: all .3s ease;
+}
+
+#tutorialSel {
+  transition: all .4s ease;
 }
 
 .intakeboxes {
