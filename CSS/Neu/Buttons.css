@@ -146,8 +146,8 @@ For inquiries regarding licensing or permission to use this code in ways not cov
 
 #statusNote {
   font-size: 22px;
-  top: 180px;
-  left: 380px;
+  top: 360px;
+  left: 30px;
   width: 150px;
   height: 60px;
 }
@@ -366,8 +366,8 @@ input.ptRad {
   font-size: 22px;
   height: 80px;
   width: 150px;
-  top: 65px;
-  left: 380px;
+  top: 250px;
+  left: 30px;
 }
 
 input.Mradio {
@@ -457,7 +457,7 @@ input.largerRadio {
   transition: all .3s ease;
 }
 
-#tutorialSel {
+#swapVer {
   transition: all .4s ease;
 }
 
@@ -582,21 +582,21 @@ input.largerRadio {
   font-size: 17px;
   width: 120px;
   height: 50px;
-  left: 10px;
-  top: -70px;
+  left: 35px;
+  top: -40px;
 }
 
 #R15 {
   font-size: 17px;
-  top: -70px;
-  left: 160px;
-  width: 120px;
+  top: 265px;
+  left: 35px;
+  WIDTH: 120px;
   height: 50px;
 }
 
 #R8 {
   font-size: 18px;
-  top: 15px;
+  top: 20px;
   left: 10px;
   width: 80px;
   height: 50px;
@@ -604,7 +604,7 @@ input.largerRadio {
 
 #R9 {
   font-size: 18px;
-  top: 105px;
+  top: 80px;
   left: 10px;
   width: 80px;
   height: 50px;
@@ -612,40 +612,40 @@ input.largerRadio {
 
 #R10 {
   font-size: 14px;
-  top: 15px;
-  left: 120px;
+  top: 20px;
+  left: 100px;
   width: 80px;
   height: 50px;
 }
 
 #R11 {
   font-size: 19px;
-  top: 105px;
-  left: 120px;
+  top: 80px;
+  left: 100px;
   width: 80px;
   height: 50px;
 }
 
 #R12 {
   font-size: 17px;
-  top: 190px;
-  left: 120px;
+  top: 145px;
+  left: 100px;
   width: 80px;
   height: 50px;
 }
 
 #R13 {
   font-size: 17px;
-  top: 270px;
-  left: 120px;
+  top: 205px;
+  left: 100px;
   width: 80px;
   height: 50px;
 }
 
 #fluid {
   font-size: 24px;
-  top: 115px;
-  left: 215px;
+  top: 90px;
+  left: 190px;
   text-shadow:
     1px 1px 1px var(--glow-txt-color),
    -1px -1px 1px var(--glow-txt-color),
@@ -655,7 +655,7 @@ input.largerRadio {
 
 #R16 {
   font-size: 17px;
-  top: 190px;
+  top: 145px;
   left: 10px;
   width: 80px;
   height: 50px;
@@ -663,7 +663,7 @@ input.largerRadio {
 
 #R17 {
   font-size: 17px;
-  top: 270px;
+  top: 205px;
   left: 10px;
   width: 80px;
   height: 50px;

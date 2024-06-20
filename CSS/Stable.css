@@ -138,6 +138,7 @@ input[type="color"] {
   text-shadow: none;
   color: black;
   &:before {
+    background: none;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -147,8 +148,12 @@ input[type="color"] {
     z-index: -1;
   }
   &:hover {
+    background: none;
+    box-shadow: none;
     color: black;
     &:before {
+      box-shadow: none; 
+      background: none;
       width: 0%;
     }
   }
@@ -160,6 +165,77 @@ input[type="color"] {
   background: none;
   border: none;
   text-shadow: 1px 1px 2px red;
+}
+
+#TPDiv2 {
+  display: inline-block;
+  position: absolute;
+  left: 400px;
+  top: 125px;
+}
+
+#T109 {
+  font-size: 15px;
+  width: 115px;
+  height: 80px;
+  left: 0px;
+  top: 170px;
+}
+
+#T209 {
+  font-size: 15px;
+  width: 115px;
+  height: 80px;
+  left: 0px;
+  top: 280px;
+}
+
+#T309 {
+  font-size: 15px;
+  width: 115px;
+  height: 80px;
+  left: 140px;
+  top: 170px;
+}
+
+#T409 {
+  font-size: 15px;
+  width: 115px;
+  height: 80px;
+  left: 140px;
+  top: 280px;
+}
+
+#T509 {
+  font-size: 15px;
+  width: 115px;
+  height: 80px;
+  left: 280px;
+  top: 170px;
+}
+
+#T609 {
+  font-size: 15px;
+  width: 115px;
+  height: 80px;
+  left: 280px;
+  top: 280px;
+}
+
+#T709 {
+  font-size: 15px;
+  width: 115px;
+  height: 80px;
+  left: 280px;
+  top: 390px;
+}
+
+#T809 {
+  font-size: 15px;
+  width: 115px;
+  height: 80px;
+  left: 280px;
+  top: 500px;
 }
 
 #Snippings {
@@ -438,151 +514,6 @@ input[type="color"] {
   z-index: 2;
 }
 
-#custBtns {
-  position: absolute;
-  display: inline-block;
-  top: 10px;
-  left: 10px;
-}
-
-#infoDiv1 {
-  font-size: 14px;
-  top: 150px;
-  left: 165px;
-  height: 450px;
-  width: 600px;
-  position: absolute;
-  display: inline-block;
-  border-radius: 5px;
-  padding: 20px;
-  z-index: 5;
-}
-
-#infoDiv2 {
-  font-size: 14px;
-  top: 150px;
-  left: 165px;
-  height: 450px;
-  width: 600px;
-  position: absolute;
-  display: inline-block;
-  border-radius: 5px;
-  padding: 20px;
-  z-index: 5;
-}
-
-#infoDone {
-  width: 120px;
-  height: 60px;
-  bottom: 15px;
-  right:  15px;
-}
-
-#infoDone2 {
-  width: 120px;
-  height: 60px;
-  bottom: 15px;
-  right:  15px;
-}
-
-#infoCancel {
-  width: 80px;
-  height: 40px;
-  bottom: 15px;
-  right:  145px;
-}
-
-#infoCancel2 {
-  width: 80px;
-  height: 40px;
-  bottom: 15px;
-  right:  145px;
-}
-
-.custom0 {
-  position: absolute;
-  display: inline-block;
-  top: 10px;
-  left: 10px;
-  height: 60px;
-  width: 150px;
-}
-
-#custBtn0 {
-  position: absolute;
-  display: inline-block;
-}
-
-#buttonSpot {
-  position:absolute;
-  display:inline-block;
-  bottom:100px;
-  right: 250px;
-}
-
-#BtnDisplay {
-  top: 180px;
-  left: 80px;
-  padding: 10px;
-}
-
-#BtnContent {
-  top: 230px;
-  left: 80px;
-  padding: 10px;
-}
-
-#radioLine {
-  position:absolute;
-  display:inline-block;
-  left: 100px;
-}
-
-#custBtn0 {
-  display: none;
-}
-
-#custBtn1 {
-  display: none;
-}
-
-#custBtn2 {
-  display: none;
-}
-
-#custBtn3 {
-  display: none;
-}
-
-#custBtn4 {
-  display: none;
-}
-
-#custBtn5 {
-  display: none;
-}
-
-#custBtn6 {
-  display: none;
-}
-
-#custBtn7 {
-  display: none;
-}
-
-#custBtn8 {
-  display: none;
-}
-
-#custBtn9 {
-  display: none;
-}
-
-.custom0 {
-  position: ABSOLUTE;
-  display: inline-block;
-}
-
 #copy-notification {
   position: fixed;
   top: -50px;
@@ -606,4 +537,66 @@ input[type="color"] {
   transition: top 0.4s ease-in-out;
   box-shadow:none;
   z-index:1000000;
+}
+
+.timer-container {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  bottom: 20px;
+  left: 120px;
+  background: none;
+  box-shadow: none;
+  border: none;
+  font-size: 18px;
+  height: 25px;
+  color: var(--glow-txt-color);
+  text-shadow:
+    1px 1px var(--glow-outline-color),
+   -1px -1px var(--glow-outline-color),
+   -1px 1px var(--glow-outline-color),
+    1px -1px var(--glow-outline-color);
+&:active {
+    transform: scale(1.05);
+  }
+}
+
+#start_call.glowing {
+  color: white;
+  text-shadow:
+    1px 1px 1px black,
+   -1px -1px 1px black,
+   -1px 1px 1px black,
+    1px -1px 1px black,
+    0px 0px 2px red,
+    0px 0px 3px red,
+    0px 0px 4px red,
+    0px 0px 5px red;
+  animation: Shine 2s 3 linear;
+}
+
+@keyframes Shine {
+  0% {
+  text-shadow:
+    1px 1px 1px black,
+   -1px -1px 1px black,
+   -1px 1px 1px black,
+    1px -1px 1px black,
+    0px 0px 2px red,
+    0px 0px 5px red,
+    0px 0px 7px red,
+    0px 0px 10px red;
+  }
+  50% {
+  text-shadow:
+    1px 1px 1px black,
+   -1px -1px 1px black,
+   -1px 1px 1px black,
+    1px -1px 1px black,
+    0px 0px 4px red,
+    0px 0px 7px red,
+    0px 0px 10px red,
+    0px 0px 15px red,
+    0px 0px 20px red;
+  }
 }

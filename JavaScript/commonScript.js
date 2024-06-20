@@ -73,7 +73,7 @@ function diagAction(action) {
   let textarea = "";
   let diagcontent, whichDivId, whichIptclass, textAreaid, notetextArea, i, tableTHs, tableTDs, table;
   diagcontent = document.getElementsByClassName("diagcontent");
-  for (i = 0; i < diagcontent.length; i++) {
+  for (let i = 0; i < diagcontent.length; i++) {
     if (diagcontent[i].style.display === "block") {
       whichDivId = diagcontent[i].id;
     }
@@ -83,7 +83,7 @@ function diagAction(action) {
   tableTDs = table.getElementsByTagName("td");
   tableTHs = table.getElementsByTagName("th");
 
-  for (i = 0; i < tableTDs.length; i++) {
+  for (let i = 0; i < tableTDs.length; i++) {
     if (action == 'clear') {
       tableTDs[i].innerText = "";
     }
@@ -117,7 +117,7 @@ function openInfo(evt, cityName) {
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
   setDate();
-    for (let i = 0; i < 6; i++) {
+    for (i = 0; i < 6; i++) {
       let elemId = "rec" + i;
       localStorage.removeItem(elemId + "Note");
       document.getElementById(elemId + "Notebin").innerText = "";
@@ -273,7 +273,7 @@ function saveAll() {
   saveRecord('incR');
   saveRecord('serR');
   saveRecord('rec0R');
-  for (i = 0; i < addLineCount; i++) {
+  for (let i = 0; i < addLineCount; i++) {
     let recId = "rec" + i + "R";
     saveRecord(recId);
   }
@@ -369,7 +369,7 @@ function otherCalcs() {
     document.getElementById('trackerMsg').innerHTML += "Need Inception date to perform calculations.";
     return;
   }
-  for (i = 0; i < objectArr.length; i++) {
+  for (let i = 0; i < objectArr.length; i++) {
     let record = objectArr[i];
     if (record.isInception == false && record.milesfrom == '0') {
       let inceptMiles = parseInt(inceptStr);
@@ -459,7 +459,7 @@ function comsoCompan(z) {
   const objectArr = JSON.parse(localStorage.getItem("objectArr"));
   objectArr.sort(compare);
   let looped = objectArr.length - 1;
-  for (i = 0; i < looped; i++) {
+  for (let i = 0; i < looped; i++) {
     let x = i + 1;
     let firDate = objectArr[i].date;
     let secDate = objectArr[x].date;
@@ -505,7 +505,7 @@ function showNote(noteID) {
       binElem.innerText = curNote;
     }
     binElem.classList.toggle("arise");
-    binElem.style.height = "150px"
+    binElem.style.height = "150px";
     document.getElementById(noteID).innerText = "Finished";
     localStorage.setItem("noteOpen", noteDivID);
     noteListen();
@@ -580,7 +580,7 @@ function displayRecs(z) {
   let mileDis = false;
   let hasMessage = false;
   let displayMessage = false;
-  for (i = 0; i < objectArr.length; i++) {
+  for (let i = 0; i < objectArr.length; i++) {
     const row = body.insertRow();
     row.classList.add('rowit');
     let tempRec = objectArr[i];
@@ -652,7 +652,7 @@ function displayRecs(z) {
     }
   }
   let allCells = document.getElementsByTagName("td");
-  for (i = 0; i < allCells.length; i++) {
+  for (let i = 0; i < allCells.length; i++) {
     if (allCells[i].innerText == "\u2714") {
       allCells[i].style.color = "green";
     }
@@ -667,7 +667,7 @@ function displayRecs(z) {
 function priorMileage() {
   const table = document.querySelector(".TheOutputtable");
   const objectArr = JSON.parse(localStorage.getItem("objectArr"));
-  for (i = 0; i < objectArr.length; i++) {
+  for (let i = 0; i < objectArr.length; i++) {
     if(objectArr[i].isPrior) {
       let x = i + 1;
       table.rows[x].cells[2].style.color = "red";
@@ -747,7 +747,7 @@ function noteOutput(z) {
     whereOut = splitL;
   }
   const objectArr = JSON.parse(localStorage.getItem("objectArr"));
-  for (i = 0; i < objectArr.length; i++) {
+  for (let i = 0; i < objectArr.length; i++) {
     if (i != 0) { whereOut.innerText += "\r"; }
     whereOut.innerText += "Date: " + objectArr[i].date;
     if (objectArr[i].isInception) {
@@ -983,7 +983,7 @@ function goGuide(option,name) {
   case "noship2":
     const pElem6 = document.createElement("p");
     pElem6.classList.add("bodyTab2");
-    const textNode6 = document.createTextNode("Authorize PA cost price under $250.00 and the remaining balance will be OOPC.")
+    const textNode6 = document.createTextNode("Authorize PA cost price under $250.00 and the remaining balance will be OOPC.");
     let div16 = document.getElementById("rfovrcost");
     pElem6.appendChild(textNode6);
     div16.appendChild(pElem6);
@@ -1085,7 +1085,7 @@ function mileageCalc() {
 
 function resetMD() {
   const mileRadios = document.getElementsByClassName("mdguide");
-  for (i = 0; i < mileRadios.length; i++) {
+  for (let i = 0; i < mileRadios.length; i++) {
     mileRadios[i].checked = false;
   }
   document.getElementById('mileageCalc').style.display = "none";
@@ -1098,7 +1098,7 @@ function resetMD() {
 
 function resetGuide() {
   const radioBtns = document.getElementsByClassName("authGuideradio");
-  for (i = 0; i < radioBtns.length; i++) {
+  for (let i = 0; i < radioBtns.length; i++) {
     radioBtns[i].checked = false;
     radioBtns[i].disabled = false;
   }
@@ -1203,10 +1203,10 @@ function instructScript() {
   let instructScript = document.getElementById("instructScript");
   if (!instructL.classList.contains("showing")) {
     instructL.classList.add("showing") ;
-    instructScript.innerText = "Hide"
+    instructScript.innerText = "Hide";
   } else {
     instructL.classList.remove("showing") ;
-    instructScript.innerText = "Instructions"
+    instructScript.innerText = "Instructions";
   }
 }
 
@@ -1346,19 +1346,19 @@ function buildLaborNote(result) {
   }
   textarea.value += "\rRepair Facility Posted Labor Rate: $" + asking;
   if (result == "underAve") {
-    textarea.value += "\r\rThe Repair Facility posted labor rate is under the average labor rate for comparable shops in the vicinity."
+    textarea.value += "\r\rThe Repair Facility posted labor rate is under the average labor rate for comparable shops in the vicinity.";
     textarea.value += "\rUpdated Repair Facility labor rate at: $" + asking;
   }
   if (result == "declined") {
-    textarea.value += "\r\rThe Repair Facility is unwilling to negotiate the labor rate."
+    textarea.value += "\r\rThe Repair Facility is unwilling to negotiate the labor rate.";
     textarea.value += "\rUpdated Repair Facility labor rate at: $" + asking;
   }
   if (result == "atAve") {
-    textarea.value += "\r\rThe Repair Facility is willing to negotiate.\rThey agreed to the average rate for the area."
+    textarea.value += "\r\rThe Repair Facility is willing to negotiate.\rThey agreed to the average rate for the area.";
     textarea.value += "\rUpdated Repair Facility labor rate at: $" + aveRate;
   }
   if (result == "halfway") {
-    textarea.value += "\r\rThe Repair Facility is willing to negotiate.\rThey agreed on midway between average and asking."
+    textarea.value += "\r\rThe Repair Facility is willing to negotiate.\rThey agreed on midway between average and asking.";
     textarea.value += "\rUpdated Repair Facility labor rate at: $" + please;
   }
   if (result == "custom") {
@@ -1372,22 +1372,24 @@ function buildLaborNote(result) {
 document.addEventListener('click', function(e) {
   let swap1 = document.getElementById('swap1');
   let mySidenav = document.getElementById('mySidenav');
+  let sopnav2 = document.getElementById('sopnav2');
+  let navtag = document.getElementById('navtag');
+  let LOCK1 = document.getElementById("LOCK1");
+
   if (!mySidenav.contains(e.target) && !swap1.contains(e.target)) {
     closeNav();
   }
-});
-
-document.addEventListener('click', function(e) {
-  let sopnav = document.getElementById('sopnav');
-  let navtag = document.getElementById('navtag');
-  if (!navtag.contains(e.target) && !sopnav.contains(e.target)) {
+  if (!navtag.contains(e.target) && !sopnav2.contains(e.target)) {
     closePDFmenu();
+  }
+  if (!LOCK1.contains(e.target)) {
+   localStorage.setItem("menuOpen", "true");
+   MENU();
   }
 });
 
 function closePDFmenu() {
   document.getElementById("navtag").style.display = "initial";
-  document.getElementById("sopnav").classList.remove("open_sop");
   document.getElementById("sopnav2").classList.remove("open_sop");
   document.getElementById("sopnav3").classList.remove("open_sop");
 }
@@ -1395,7 +1397,6 @@ function closePDFmenu() {
 function openSOPnav() {
   if (checkOpen()) { return; }
   document.getElementById("navtag").style.display = "none";
-  document.getElementById("sopnav").classList.add("open_sop");
   document.getElementById("sopnav2").classList.add("open_sop");
   document.getElementById("sopnav3").classList.add("open_sop");
 }
@@ -1472,3 +1473,5 @@ function closeSOP() {
   }
   PDFdepot.style.display = 'none';
 }
+
+
