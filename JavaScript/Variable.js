@@ -301,18 +301,6 @@ document.addEventListener('contextmenu', function(e) {
   openNav();
 });
 
-document.onkeydown = function(e) {
-  if (e.ctrlKey && e.altKey && e.shiftKey && e.which == 85) {
-    document.getElementById('myInfo').style.display = "itnline-block";
-  }
-};
-
-document.onkeyup = function(e) {
-  if (e.ctrlKey && e.altKey && e.shiftKey && e.which == 85) {
-    document.getElementById('myInfo').style.display = "none";
-  }
-};
-
 function RESET() {
   localStorage.setItem("newpartcount","2");
   document.getElementById("textarea1").value = "CONTACT:   \rPAYMENT:   \rZIPCODE:   \rMILEAGE:   \rDISTANCE:   \rTIME:   ";
@@ -365,9 +353,6 @@ document.onkeyup = function(e) {
     return;
   }
  }
-};
-
-document.onkeyup = function(e) {
   if (e.ctrlKey && e.altKey && e.shiftKey && e.which == 76) {
     document.location.href = 'https://adjusterconsole.github.io/',true;
  }
